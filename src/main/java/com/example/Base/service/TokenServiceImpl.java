@@ -24,9 +24,7 @@ public class TokenServiceImpl implements TokenService{
 
     @Override
     public void loginMethod(UserDTO userDTO, HttpServletResponse response) {
-        log.info(userDTO.getEmail());
         UserEntity info = userRepository.findByEmail(userDTO.getEmail());
-        log.info(info);
         if(info == null){
             throw new UsernameNotFoundException("User not found in the database");
         }
@@ -36,7 +34,7 @@ public class TokenServiceImpl implements TokenService{
             boolean verify = passwordEncoder.matches(userDTO.getPassword(), password);
 
             if(verify){
-                tokenProvider.createToken(userDTO, response);
+                tokenProvider.createToken(info.toDTO(), response);
             }
 
             else {

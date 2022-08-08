@@ -3,6 +3,7 @@ package com.example.Base.controller;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.Base.domain.entity.UserEntity;
 import com.example.Base.domain.dto.ResponseDTO;
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -57,9 +59,10 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user/save")
+    @PostMapping("/save")
     public ResponseEntity saveUser(@RequestBody UserDTO userDTO) {
         try {
+            log.info("in");
             userDTO.setRole("ROLE_USER");
 
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());// = localhost8080:/api/user/save
@@ -91,9 +94,31 @@ public class UserController {
         }
     }
 
+    @GetMapping("/check")
+    public ResponseEntity checkUser(HttpServletRequest request, HttpServletResponse response){
+        String accesstoken = request.getHeader("Authorization");
+
+        String token = accesstoken.substring("Bearer ".length());
+
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        DecodedJWT decodedJWT = verifier.verify(token);
+
+        String email = decodedJWT.getSubject();
+        String name = decodedJWT.getIssuer();
+
+        UserEntity user = userService.getUser(email);
+        String role = user.getRole();
+
+        response.setHeader("email", email);
+        response.setHeader("name", name);
+        response.setHeader("role", role);
+
+        return ResponseEntity.ok().body("User Info");
+    }
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String refresh_token = request.getHeader("refresh_token");
+        String refresh_token = request.getHeader(AUTHORIZATION);
         if(refresh_token != null && refresh_token.startsWith("Bearer ")) {
             try {
                 String past_token = refresh_token.substring("Bearer ".length());

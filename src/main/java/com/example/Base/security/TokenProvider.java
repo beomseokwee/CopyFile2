@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.Base.domain.dto.TokenDTO;
 import com.example.Base.domain.dto.UserDTO;
+import com.example.Base.domain.entity.UserEntity;
 import com.example.Base.repository.TokenRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,6 +24,7 @@ public class TokenProvider {
 
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes()); //token 생성 알고리즘
 
+        log.info(user.getName());
         String access_token = JWT.create() //access token 생성
                 .withSubject(user.getEmail())//이름을 유일한 유저 정보로 하여 토큰의 중복 방지
                 .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 *1000)) //기간 설정 -> 지금으로 부터 + ???
@@ -32,7 +34,7 @@ public class TokenProvider {
 
         String refresh_token = JWT.create() //refresh token 생성
                 .withSubject(user.getEmail())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 *1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 30000 * 60 *1000))
                 .withIssuer(user.getEmail())
                 .sign(algorithm);
 
