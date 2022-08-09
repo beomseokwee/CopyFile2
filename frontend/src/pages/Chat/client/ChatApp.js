@@ -56,7 +56,7 @@ function ChatApp() {
     },[room]);
 
     const joinRoom = () =>{
-        if(gosu !== "" && room !== ""){
+        if(gosu !== null && room !== ""){
             socket.emit("join_room", room);
         }
     } // 유저이름이 있고, 방이름이 있을때만 동작

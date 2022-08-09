@@ -54,7 +54,7 @@ function Chat({socket, gosu,user, room}) {
                 <ScrollToBottom className='message-container'>
                     {messageList.map((messageContent,i)=>{
                         // return <div className='message' id ={username === messageContent.author ? "you" : "other"}>
-                        return <div className='message' id ={gosu === messageContent.gosu ? "you" : "other"}>
+                        return <div key={i} className='message' id ={gosu === messageContent.gosu ? "you" : "other"}>
 
                             {/* 여기서 아이디값주는 이유는 css 적용 */}
                             <div>

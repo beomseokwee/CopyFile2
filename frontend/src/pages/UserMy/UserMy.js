@@ -58,7 +58,7 @@ function UserMy() {
                         <WelcomeName>안녕하세요, {user_info.nickname}님</WelcomeName>
                     <Estimation>받은 견적</Estimation>
                     <GosuListBox onClick={viewGosuList}>
-                    <GosuListText>요청온 고수 리스트</GosuListText>
+                    <GosuListText >요청온 고수 리스트</GosuListText>
                 {isToggleHeight ? (
                     <IoIosArrowUp className="listIcon" />
                     ) : (
@@ -70,7 +70,10 @@ function UserMy() {
                     return (
                     <List key={i}>
                     <ListImg alt="gosu_image" src='/images/4.jpg' />
-                    <ListName>위범석</ListName>
+                    <Estimation  style={{marginBottom:'0px',marginLeft:'10px'}}>위범석</Estimation>
+                        <Estimation style={{marginBottom:'0px',marginLeft:'70px',color:'red'}} onClick={()=>{
+                            window.location.href='/GosuInfo'
+                        }}>확인</Estimation>
                     </List>
                     );
                 })}

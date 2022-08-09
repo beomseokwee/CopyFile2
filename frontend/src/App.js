@@ -21,6 +21,7 @@ import GosuSignUp from "./pages/Gosu/GosuSignUp";
 import GosuDetail from "./pages/Gosu/GosuDetail/GosuDetail";
 import { useHistory } from 'react-router-dom';
 import ChatApp from "./pages/Chat/client/ChatApp";
+import GosuInfo from "./pages/Gosu/GosuQuotation/GosuInfo";
 function App(props) {
     const dispatch = useDispatch();
     const token = getCookie("is_login")
@@ -45,6 +46,7 @@ function App(props) {
             <Route path="/ChatApp" exact component={ChatApp}/>
             <Route path="/GosuMain" exact component={GosuMain}/>
             <Route path="/GosuDetail" exact component={GosuDetail}/>
+            <Route exact path="/GosuInfo/:id" component={GosuInfo} />
             <Route path="/Gosu/SignUp/Survey" exact component={GosuSurvey}/>
             <Route path="/category/" exact component={DetailCategory}/>
             <Route path="/category/:id" exact  component={DetailCategory}/>
