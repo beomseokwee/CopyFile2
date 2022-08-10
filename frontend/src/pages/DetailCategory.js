@@ -16,9 +16,33 @@ import {Grid} from "../elements";
 
 
 function DetailCategory(props) {
+    const [sliders2,setSliders2] = useState([]);
+    const params = useParams();
+    const history = useHistory();
+    const [serviceId2, setServiceId2] = useState();
+    const token = getCookie('is_login');
+
+    const [selectedCategory, setSelectedCategory] = useState(1);
     useEffect(() => {
         getInfo();
     }, []);
+    const getInfo = () => {
+        const { id } = params;
+        fetch(`/category/${id}`, {
+            method:'GET',
+            headers: {
+                Authorization: getCookie('is_login'),
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                let sliders2 = res;
+                setSliders2(sliders2);
+                console.log(sliders2);
+            });
+    };
+
     // const [sliders2, setSliders] = useState([{
     //     image:'../images/4.jpg',
     //     name:'서빙',
@@ -57,13 +81,8 @@ function DetailCategory(props) {
     //     image:'../images/bedroom.jpg',
     //     name:'알바9',
     //     id:'8'}]);
-    const params = useParams();
-    const history = useHistory();
-    const [serviceId2, setServiceId2] = useState();
-    const token = getCookie('is_login');
-    const { id } = params;
-    const [selectedCategory, setSelectedCategory] = useState(1);
-    console.log(id);
+    //
+
     const GoToServey = serviceId => {
         if (token) {
             setServiceId2(serviceId2);
@@ -72,22 +91,23 @@ function DetailCategory(props) {
             alert('로그인이 필요합니다.');
         }
     };
-    const [sliders2, setSliders2] = useState([]);
-    const getInfo = () => {
-        fetch(`/category/${id}`, {
-            method:'GET',
-            headers: {
-                Authorization: getCookie('is_login'),
-            },
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                let sliders3 = res;
-                setSliders2(sliders2);
-                console.log(sliders2);
-            });
-    };
+    // const getInfo = () => {
+    //     const { id } = params;
+    //     console.log(id)
+    //     fetch(`/category/${id}`, {
+    //         method:'GET',
+    //         headers: {
+    //             Authorization: getCookie('is_login'),
+    //         },
+    //     })
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res);
+    //             let pageInfo = res;
+    //             setPageInfo(pageInfo);
+    //             // console.log(pageInfo[0])
+    //         });
+    // };
     return (
         <>
             <Header1>
