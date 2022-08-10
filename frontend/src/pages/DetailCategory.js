@@ -38,7 +38,8 @@ function DetailCategory(props) {
             .then(res => {
                 console.log(res);
                 let sliders2 = res;
-                setSliders2(sliders2);
+
+                setSliders2(res);
                 console.log(sliders2);
             });
     };
@@ -142,7 +143,10 @@ function DetailCategory(props) {
             </main>
         </Header1>
             <Grid container spacing={1}>
+                {
+                    sliders2 &&
                     <Slide2 sliders2={sliders2} GoToServey={GoToServey} />
+                }
             </Grid>
         </>
     );
