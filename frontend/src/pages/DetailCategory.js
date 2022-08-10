@@ -16,64 +16,47 @@ import {Grid} from "../elements";
 
 
 function DetailCategory(props) {
-    const [sliders3,setSliders3] = useState([])
     useEffect(() => {
         getInfo();
     }, []);
-    const getInfo = () => {
-        fetch(`/`, {
-            method:'GET',
-            headers: {
-                Authorization: getCookie('is_login'),
-            },
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                let sliders3 = res;
-                setSliders3(sliders3);
-                console.log(sliders3);
-            });
-    };
-
-    const [sliders2, setSliders] = useState([{
-        image:'../images/4.jpg',
-        name:'서빙',
-        id:'0'
-    },{
-        image:'../images/winter5.jpg',
-        name:'편의점 알바',
-        id:'1'
-    },{
-        image:'../images/winter6.jpg',
-        name:'알바3',
-        id:'2'
-    },{
-        image:'../images/winter7.jpg',
-        name:'알바4',
-        id:'3'
-    },{
-        image:'../images/winter8.jpg',
-        name:'알바5',
-        id:'4'
-    },{
-        image:'../images/winter9.png',
-        name:'알바6',
-        id:'5'
-    },
-        {
-        image:'../images/winter10.jpg',
-        name:'알바7',
-        id:'6'
-    },
-        {
-        image:'../images/111111.jpg',
-        name:'알바8',
-        id:'7'},
-        {
-        image:'../images/bedroom.jpg',
-        name:'알바9',
-        id:'8'}]);
+    // const [sliders2, setSliders] = useState([{
+    //     image:'../images/4.jpg',
+    //     name:'서빙',
+    //     id:'0'
+    // },{
+    //     image:'../images/winter5.jpg',
+    //     name:'편의점 알바',
+    //     id:'1'
+    // },{
+    //     image:'../images/winter6.jpg',
+    //     name:'알바3',
+    //     id:'2'
+    // },{
+    //     image:'../images/winter7.jpg',
+    //     name:'알바4',
+    //     id:'3'
+    // },{
+    //     image:'../images/winter8.jpg',
+    //     name:'알바5',
+    //     id:'4'
+    // },{
+    //     image:'../images/winter9.png',
+    //     name:'알바6',
+    //     id:'5'
+    // },
+    //     {
+    //     image:'../images/winter10.jpg',
+    //     name:'알바7',
+    //     id:'6'
+    // },
+    //     {
+    //     image:'../images/111111.jpg',
+    //     name:'알바8',
+    //     id:'7'},
+    //     {
+    //     image:'../images/bedroom.jpg',
+    //     name:'알바9',
+    //     id:'8'}]);
     const params = useParams();
     const history = useHistory();
     const [serviceId2, setServiceId2] = useState();
@@ -89,23 +72,22 @@ function DetailCategory(props) {
             alert('로그인이 필요합니다.');
         }
     };
-    // const getInfo = () => {
-    //     const { id } = params;
-    //     console.log(id)
-    //     fetch(`/category/${id}`, {
-    //         method:'GET',
-    //         headers: {
-    //             Authorization: getCookie('is_login'),
-    //         },
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             console.log(res);
-    //             let pageInfo = res;
-    //             setPageInfo(pageInfo);
-    //             // console.log(pageInfo[0])
-    //         });
-    // };
+    const [sliders2, setSliders2] = useState([]);
+    const getInfo = () => {
+        fetch(`/category/${id}`, {
+            method:'GET',
+            headers: {
+                Authorization: getCookie('is_login'),
+            },
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                let sliders3 = res;
+                setSliders2(sliders2);
+                console.log(sliders2);
+            });
+    };
     return (
         <>
             <Header1>
