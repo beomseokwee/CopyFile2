@@ -6,6 +6,7 @@ import GosuMainSection from './GosuMainSection/GosuMainSection';
 // import GosuAsideBar from './GosuAsideBar/GosuAsideBar';
 
 function GosuInfo() {
+    // var [introduction,setIntroduction]=useState('안녕하세요 윈터 입니다.')
     const [gosuDetails, setGosuDetails] = useState({
         review_counts:4,
     uploaded_image:'/images/winter8.jpg',
@@ -13,7 +14,7 @@ function GosuInfo() {
         name:'winter',
         main_service:'서빙',
         average_rating:5,
-        introduction:'안녕하세요 에스파 윈터 입니다',
+        introduction:'안녕하세요 에스파 윈터 입니다!',
         career:'10',
         region:'서울',
         hired:'30',
@@ -50,6 +51,7 @@ function GosuInfo() {
     // }, []);
 
 
+
     console.log(`gosuDetails`, gosuDetails);
     return (
         <GosuDetailContainer>
@@ -65,10 +67,26 @@ function GosuInfo() {
                     {/*/>*/}
                 </>
             )}
+            <ReviewMoreBtn onClick={()=>{
+                window.location.href='/ChatApp';
+            }}>상담하기</ReviewMoreBtn>
         </GosuDetailContainer>
     );
 }
-
+const ReviewMoreBtn = styled.button`
+  padding: 13px 30px;
+  border: 1px solid #dbdbdb;
+  border-radius: 40px;
+  background-color: orange;
+  color: rebeccapurple;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: rebeccapurple;
+    color: white;
+  }
+`;
 const GosuDetailContainer = styled.div`
   display: flex;
   justify-content: center;

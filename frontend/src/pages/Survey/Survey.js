@@ -28,7 +28,7 @@ function Survey(props) {
     const getInfo = () => {
         const { id } = params;
         console.log(id)
-        fetch(`/category/${id}/survey/${id}`, {
+        fetch(`/category/${id}`, {
             method:'GET',
             headers: {
                 Authorization: getCookie('is_login'),

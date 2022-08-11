@@ -8,81 +8,81 @@ import {Container,Row,Col} from 'react-bootstrap'
 import {Box,Grid} from "@mui/material";
 
 function Slide2({ sliders2, GoToServey }) {
-
+    const _idx = 1;
     return (
         <>
             <SlideTitle>알바 카테고리</SlideTitle>
             <Grid container spacing={1}>
                 <Grid item xs={12} sm={4}>
                     <Box  color="info.contrastText">
-                        <CardBox  onClick={() => GoToServey(sliders2.id)}>
-                            <CardImg alt="인기 서비스" src= {sliders2.image} />
+                        <CardBox  onClick={() => GoToServey(sliders2[0]._idx)}>
+                            <CardImg alt="인기 서비스" src= {sliders2[0].image} />
                             <CardText>{sliders2.name}</CardText>
                         </CardBox>
                     </Box>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                     <Box  color="info.contrastText">
-                        <CardBox  onClick={() => GoToServey(sliders2.id)}>
-                            <CardImg  alt="인기 서비스" src= {sliders2.image} />
+                        <CardBox  onClick={() => GoToServey(sliders2[1]._idx)}>
+                            <CardImg  alt="인기 서비스" src= {sliders2[1].image} />
                             <CardText>{sliders2.name}</CardText>
                         </CardBox>
                     </Box>
                 </Grid>
-            {/*    <Grid item xs={12} sm={4}>*/}
-            {/*        <Box color="info.contrastText" >*/}
-            {/*            <CardBox  onClick={() => GoToServey(sliders2[2].id)}>*/}
-            {/*                <CardImg alt="인기 서비스" src= {sliders2[2].image} />*/}
-            {/*                <CardText>{sliders2[2].name}</CardText>*/}
-            {/*            </CardBox>*/}
-            {/*        </Box>*/}
-            {/*    </Grid>*/}
-            {/*    <Grid item xs={12} sm={4}>*/}
-            {/*        <Box color="info.contrastText" >*/}
-            {/*            <CardBox  onClick={() => GoToServey(sliders2[3].id)}>*/}
-            {/*                <CardImg alt="인기 서비스" src= {sliders2[3].image} />*/}
-            {/*                <CardText>{sliders2[3].name}</CardText>*/}
-            {/*            </CardBox>*/}
-            {/*        </Box>*/}
-            {/*    </Grid>*/}
-            {/*    <Grid item xs={12} sm={4}>*/}
-            {/*        <Box color="info.contrastText" >*/}
-            {/*            <CardBox  onClick={() => GoToServey(sliders2[4].id)}>*/}
-            {/*                <CardImg alt="인기 서비스" src= {sliders2[4].image} />*/}
-            {/*                <CardText>{sliders2[4].name}</CardText>*/}
-            {/*            </CardBox>*/}
-            {/*        </Box>*/}
-            {/*    </Grid>*/}
-            {/*    <Grid item xs={12} sm={4}>*/}
-            {/*        <Box  color="info.contrastText" >*/}
-            {/*            <CardBox  onClick={() => GoToServey(sliders2[5].id)}>*/}
-            {/*                <CardImg alt="인기 서비스" src= {sliders2[5].image} />*/}
-            {/*                <CardText>{sliders2[5].name}</CardText>*/}
-            {/*            </CardBox>*/}
-            {/*        </Box>*/}
-            {/*    </Grid>*/}
-            {/*    <Grid item xs={12} sm={4}>*/}
-            {/*        <Box  color="info.contrastText" >*/}
-            {/*    <CardBox  onClick={() => GoToServey(sliders2[6].id)}>*/}
-            {/*        <CardImg alt="인기 서비스" src= {sliders2[6].image} />*/}
-            {/*        <CardText>{sliders2[6].name}</CardText>*/}
-            {/*    </CardBox>*/}
-            {/*        </Box>*/}
-            {/*</Grid><Grid item xs={12} sm={4}>*/}
-            {/*    <Box  color="info.contrastText" >*/}
-            {/*        <CardBox  onClick={() => GoToServey(sliders2[7].id)}>*/}
-            {/*            <CardImg alt="인기 서비스" src= {sliders2[7].image} />*/}
-            {/*            <CardText>{sliders2[7].name}</CardText>*/}
-            {/*        </CardBox>*/}
-            {/*    </Box>*/}
-            {/*</Grid><Grid item xs={12} sm={4}>*/}
-            {/*    <Box  color="info.contrastText" >*/}
-            {/*        <CardBox  onClick={() => GoToServey(sliders2[8].id)}>*/}
-            {/*            <CardImg alt="인기 서비스" src= {sliders2[8].image} />*/}
-            {/*            <CardText>{sliders2[8].name}</CardText>*/}
-            {/*        </CardBox>*/}
-            {/*    </Box>*/}
-            {/*</Grid>*/}
+                <Grid item xs={12} sm={4}>
+                    <Box color="info.contrastText" >
+                        <CardBox  onClick={() => GoToServey(sliders2[2]._idx)}>
+                            <CardImg alt="인기 서비스" src= {sliders2[2].image} />
+                            <CardText>{sliders2[2].name}</CardText>
+                        </CardBox>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Box color="info.contrastText" >
+                        <CardBox  onClick={() => GoToServey(sliders2[3]._idx)}>
+                            <CardImg alt="인기 서비스" src= {sliders2[3].image} />
+                            <CardText>{sliders2[3].name}</CardText>
+                        </CardBox>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Box color="info.contrastText" >
+                        <CardBox  onClick={() => GoToServey(sliders2[4]._idx)}>
+                            <CardImg alt="인기 서비스" src= {sliders2[4].image} />
+                            <CardText>{sliders2[4].name}</CardText>
+                        </CardBox>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Box  color="info.contrastText" >
+                        <CardBox  onClick={() => GoToServey(sliders2[5]._idx)}>
+                            <CardImg alt="인기 서비스" src= {sliders2[5].image} />
+                            <CardText>{sliders2[5].name}</CardText>
+                        </CardBox>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Box  color="info.contrastText" >
+                <CardBox  onClick={() => GoToServey(sliders2[6]._idx)}>
+                    <CardImg alt="인기 서비스" src= {sliders2[6].image} />
+                    <CardText>{sliders2[6].name}</CardText>
+                </CardBox>
+                    </Box>
+            </Grid><Grid item xs={12} sm={4}>
+                <Box  color="info.contrastText" >
+                    <CardBox  onClick={() => GoToServey(sliders2[7]._idx)}>
+                        <CardImg alt="인기 서비스" src= {sliders2[7].image} />
+                        <CardText>{sliders2[7].name}</CardText>
+                    </CardBox>
+                </Box>
+            </Grid><Grid item xs={12} sm={4}>
+                <Box  color="info.contrastText" >
+                    <CardBox  onClick={() => GoToServey(sliders2[8]._idx)}>
+                        <CardImg alt="인기 서비스" src= {sliders2[8]._imagex} />
+                        <CardText>{sliders2[8].name}</CardText>
+                    </CardBox>
+                </Box>
+            </Grid>
             </Grid>
 
         </>

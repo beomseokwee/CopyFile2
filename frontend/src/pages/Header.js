@@ -33,7 +33,6 @@ const Header = (props) => {
     // )
     //     return null;
 
-
     const userMyOpen = () => {
         setIsUserMyOpen(!isUserMyOpen);
     };
@@ -41,7 +40,7 @@ const Header = (props) => {
     //     getQuotationList();
     // }, []);
     // const getQuotationList = () => {
-    //     fetch(`${BASE_URL}/quotations`, {
+    //     fetch(`/quotations`, {
     //         method: 'GET',
     //         headers: {
     //             Authorization: localStorage.getItem('access_token'),
@@ -69,8 +68,8 @@ const Header = (props) => {
                         </S.LogoBox>
 
             <S.MenuBox>
-                <S.MenuList onClick={function(){
-                    history.push('/test')
+                <S.MenuList onClick={()=>{
+                    window.location.href='/QuotationList'
 
                 }} >견적보기</S.MenuList>
                 <S.MenuList>고수찾기</S.MenuList>
@@ -79,6 +78,7 @@ const Header = (props) => {
                     <S.UserBox>
                         {user_info ? (
                             <>
+
                                 <S.UserImgBox>
                                     {
                                         window.location.pathname !='/ChatApp'?(

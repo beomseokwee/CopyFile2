@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom';
 import axios from 'axios';
 
+
+
 function Chat({socket, gosu,user, room}) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList,setMessageList] = useState([]); // 상대방이 보낸 메시지 표시하기위한 변수
@@ -10,6 +12,7 @@ function Chat({socket, gosu,user, room}) {
     // useEffect(()=>{
     //     sendMessage()
     // },[messageList])
+
 
     const sendMessage = async() => {
         if (currentMessage !== ""){ // 메시지가 비어있지않

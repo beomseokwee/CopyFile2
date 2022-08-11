@@ -37,6 +37,10 @@ function GosuInfoBox({ gosuDetails, handleMoreBtn, closed }) {
     return (
         <GosuInfoContainer>
             <GosuIntroduce>
+                <h2>견적 결과 가격</h2>
+                <p>총 10,000원</p>
+            </GosuIntroduce>
+            <GosuIntroduce>
                 <h2>한줄소개</h2>
                 <p>{introduction}</p>
             </GosuIntroduce>

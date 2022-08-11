@@ -9,6 +9,7 @@ import {useSelector} from "react-redux";
 function UserMy() {
     const [isToggleHeight, setIsToggleHeight] = useState(false);
     const [matchedLists, setMatchedLists] = useState(['리스트1','리스트2']);
+    const [matchedUserLists, setMatchedUserLists] = useState(['리스트1','리스트2']);
     const user_info = useSelector((state) => state.user.user);
     const viewGosuList = () => {
         setIsToggleHeight(prev => !prev);
@@ -31,10 +32,12 @@ function UserMy() {
         <Container>
             <Box>
                 {
-                    user_info.role !== 'ROLE_ADMIN' ?
+                    user_info.role == 'ROLE_ADMIN' ?
                         (<>
                             <WelcomeName>안녕하세요, {user_info.nickname}님</WelcomeName>
-                        <Estimation>받은 요청</Estimation>
+                        <Estimation onClick={()=>{
+                            window.location.href='/GosuDetail'
+                        }}>프로필</Estimation>
                     <GosuListBox onClick={viewGosuList}>
                     <GosuListText>요청온 유저 리스트</GosuListText>
                 {isToggleHeight ? (
@@ -44,11 +47,14 @@ function UserMy() {
                     )}
                     </GosuListBox>
                     <ListWrap className={isToggleHeight ? 'active' : null}>
-                {matchedLists.map((matchedList, i) => {
+                {matchedUserLists.map((matchedList, i) => {
                     return (
                     <List key={i}>
-                {/*<ListImg src={matchedList.image} alt="gosu_image" />*/}
-                {/*<ListName>{matchedList.master_name}</ListName>*/}
+                        <ListImg alt="gosu_image" src='/images/4.jpg' />
+                        <Estimation  style={{marginBottom:'0px',marginLeft:'10px'}}>윈터 유저님</Estimation>
+                        <Estimation style={{marginBottom:'0px',marginLeft:'70px',color:'red'}} onClick={()=>{
+                            window.location.href=`/GosuInfoDetail/${i}`
+                        }}>확인</Estimation>
                     </List>
                     );
                 })}

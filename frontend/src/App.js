@@ -14,7 +14,7 @@ import Survey from './pages/Survey/Survey'
 import axios from "axios";
 import {Signup} from "./pages/NavEle";
 import DetailCategory from "./pages/DetailCategory";
-import test from "./pages/test";
+import QuotationList from "./pages/QuotationList/QuotationList";
 import GosuMain from "./pages/Gosu/GosuMain";
 import GosuSurvey from "./pages/Gosu/GosuSurvey";
 import GosuSignUp from "./pages/Gosu/GosuSignUp";
@@ -22,6 +22,7 @@ import GosuDetail from "./pages/Gosu/GosuDetail/GosuDetail";
 import { useHistory } from 'react-router-dom';
 import ChatApp from "./pages/Chat/client/ChatApp";
 import GosuInfo from "./pages/Gosu/GosuQuotation/GosuInfo";
+import GosuInfoDetail from "./pages/Gosu/GosuQuotationDetail/GosuInfo";
 function App(props) {
     const dispatch = useDispatch();
     const token = getCookie("is_login")
@@ -42,10 +43,11 @@ function App(props) {
             <Route path="/signup" exact component={SignUp}/>
             <Route path="/Gosu/SignUp" exact component={GosuSignUp}/>
             <Route path="/" exact component={Main}/>
-            <Route path="/test" exact component={test}/>
+            <Route path="/QuotationList" exact component={QuotationList}/>
             <Route path="/ChatApp" exact component={ChatApp}/>
             <Route path="/GosuMain" exact component={GosuMain}/>
             <Route path="/GosuDetail" exact component={GosuDetail}/>
+            <Route path="/GosuInfoDetail/:id" exact component={GosuInfoDetail}/>
             <Route exact path="/GosuInfo/:id" component={GosuInfo} />
             <Route path="/Gosu/SignUp/Survey" exact component={GosuSurvey}/>
             <Route path="/category/" exact component={DetailCategory}/>

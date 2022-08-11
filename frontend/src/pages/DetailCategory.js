@@ -144,7 +144,7 @@ function DetailCategory(props) {
         </Header1>
             <Grid container spacing={1}>
                 {
-                    sliders2 &&
+                    sliders2.length != 0  &&
                     <Slide2 sliders2={sliders2} GoToServey={GoToServey} />
                 }
             </Grid>
