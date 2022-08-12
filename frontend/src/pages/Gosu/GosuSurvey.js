@@ -4,14 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import {getCookie} from "../../shared/Cookie";
 import SurveyBox from "./SurveyBox/SurveyBox";
-
+import GosuSignUp from './GosuSignUp'
+import gosuSignUp from "./GosuSignUp";
 
 function GosuSurvey(props) {
-    const [pageInfo, setPageInfo] = useState([]);
-    const [rating, setRating] = useState();
-    const history = useHistory();
-    const params = useParams();
-    console.log(props.test)
+    // const [pageInfo, setPageInfo] = useState([]);
+    // const [rating, setRating] = useState();
+    // const history = useHistory();
+    // const params = useParams();
+    let [modal,setModal] = useState(false);
     // useEffect(() => {
     //     getInfo();
     // }, []);
@@ -51,9 +52,11 @@ function GosuSurvey(props) {
         <>
 
             <SurveyContainer>
-                <SurveySection pageInfo = {pageInfo}>
-                    <SurveyBox />
-                </SurveySection>
+
+                    {
+                        modal ===false ? <GosuSignUp modal={modal} setModal={setModal} /> : <SurveySection ><SurveyBox /></SurveySection>
+                    }
+
             </SurveyContainer>
         </>
     );
@@ -66,7 +69,7 @@ const SurveySection = styled.div`
   width: 750px;
   margin: 1rem auto 0;
   margin-top: 300px;
-  
+
 `;
 
 export default GosuSurvey;

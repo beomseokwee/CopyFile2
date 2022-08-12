@@ -17,7 +17,7 @@ import DetailCategory from "./pages/DetailCategory";
 import QuotationList from "./pages/QuotationList/QuotationList";
 import GosuMain from "./pages/Gosu/GosuMain";
 import GosuSurvey from "./pages/Gosu/GosuSurvey";
-import GosuSignUp from "./pages/Gosu/GosuSignUp";
+// import GosuSignUp from "./pages/Gosu/GosuSignUp";
 import GosuDetail from "./pages/Gosu/GosuDetail/GosuDetail";
 import { useHistory } from 'react-router-dom';
 import ChatApp from "./pages/Chat/client/ChatApp";
@@ -41,7 +41,7 @@ function App(props) {
         <ConnectedRouter history={history}>
             <Route path="/login" exact component={Login}/>
             <Route path="/signup" exact component={SignUp}/>
-            <Route path="/Gosu/SignUp" exact component={GosuSignUp}/>
+            {/*<Route path="/Gosu/SignUp" exact component={GosuSignUp}/>*/}
             <Route path="/" exact component={Main}/>
             <Route path="/QuotationList" exact component={QuotationList}/>
             <Route path="/ChatApp" exact component={ChatApp}/>
@@ -49,7 +49,7 @@ function App(props) {
             <Route path="/GosuDetail" exact component={GosuDetail}/>
             <Route path="/GosuInfoDetail/:id" exact component={GosuInfoDetail}/>
             <Route exact path="/GosuInfo/:id" component={GosuInfo} />
-            <Route path="/Gosu/SignUp/Survey" exact component={GosuSurvey}/>
+            <Route path="/Gosu/SignUp" exact component={GosuSurvey}/>
             <Route path="/category/" exact component={DetailCategory}/>
             <Route path="/category/:id" exact  component={DetailCategory}/>
             <Route exact path="/category/:id/survey" exact component={Survey} />

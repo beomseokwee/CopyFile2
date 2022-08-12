@@ -21,7 +21,7 @@ import {getCookie} from "../../../shared/Cookie";
 
 // APIKEY
 
-function SurveyBox({ pageInfo }) {
+function SurveyBox({ pageInfo,id }) {
     const [loading, setLoading] = useState(false);
     const [selectedTown, setSelectedTown] = useState('');
     const [radioValue, setRadioValue] = useState({
@@ -126,8 +126,8 @@ function SurveyBox({ pageInfo }) {
     const submitForm = () => {
         const age = radioValue.age.slice(0, 2);
         const [career] = radioValue.career.split('~');
-
-        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+        let a = localStorage.getItem('id')
+        fetch(`/category/${a}/survey/${id}/save`, {
             method: 'POST',
             headers: {
                 Authorization: getCookie('is_login'),
@@ -144,6 +144,7 @@ function SurveyBox({ pageInfo }) {
             .then(res => res.json())
             // .then(goToFindGosu());
             .then((res)=>{
+                console.log(a,id)
                 window.location.href='/'
             })
     };

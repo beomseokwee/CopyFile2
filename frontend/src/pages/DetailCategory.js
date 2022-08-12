@@ -38,9 +38,11 @@ function DetailCategory(props) {
             .then(res => {
                 console.log(res);
                 let sliders2 = res;
-
+                localStorage.setItem('id',id);
                 setSliders2(res);
                 console.log(sliders2);
+
+
             });
     };
 
@@ -84,10 +86,12 @@ function DetailCategory(props) {
     //     id:'8'}]);
     //
 
-    const GoToServey = serviceId => {
+    const GoToServey = serviceId2 => {
         if (token) {
+            const{id} = params
+            console.log(id)
             setServiceId2(serviceId2);
-            return window.location.replace(`/category/${serviceId}/survey/${serviceId}`);
+            return window.location.replace(`/category/${id}/survey/${serviceId2}`);
         } else {
             alert('로그인이 필요합니다.');
         }

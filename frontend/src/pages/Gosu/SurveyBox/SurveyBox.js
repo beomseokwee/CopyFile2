@@ -18,6 +18,7 @@ import {
 // STYLES
 import * as S from './SurveyBoxEle';
 import {getCookie} from "../../../shared/Cookie";
+import {info} from "node-sass";
 
 // APIKEY
 
@@ -27,8 +28,9 @@ function SurveyBox(props) {
     const email = localStorage.getItem('email')
     const name = localStorage.getItem('name')
     const password = localStorage.getItem('password')
-    console.log(props.test)
+    console.log(props.info)
     const [radioValue, setRadioValue] = useState({
+
         gender: '',
         age: '',
         career: '',
@@ -142,6 +144,7 @@ function SurveyBox(props) {
     const submitForm = () => {
         const age = radioValue.age.slice(0, 2);
         const [career] = radioValue.career.split('~');
+        console.log(props.info)
         fetch(`https://jsonplaceholder.typicode.com/posts`, {
             method: 'POST',
             headers: {
@@ -149,13 +152,15 @@ function SurveyBox(props) {
             },
             body: JSON.stringify({
                 // user_id: 12,
-                age: Number(age),
+                email : props.info.email,
+                password : props.info.password,
+                name : props.info.name,
+                age: age,
                 service: radioValue.service,
-                career: Number(career),
+                career: career,
                 gender: radioValue.gender,
                 region: selectedTown,
                 service_id: 2,
-                email:email,
             }),
         })
             .then(res => res.json())

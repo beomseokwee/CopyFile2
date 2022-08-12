@@ -22,7 +22,7 @@ function ChatApp() {
             },
             body: JSON.stringify({
                 email:localStorage.getItem('email')
-            }),
+        }),
         })
             .then(res => res.json())
             // .then(goToFindGosu());

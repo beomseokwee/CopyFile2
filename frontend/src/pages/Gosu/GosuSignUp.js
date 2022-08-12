@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import SurveyBox from './SurveyBox/SurveyBox'
+
 import {
     Avatar,
     Button,
@@ -17,7 +19,6 @@ import {
 } from '@mui/material/';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from 'styled-components';
-import SurveyBox from "./SurveyBox/SurveyBox";
 
 // mui의 css 우선순위가 높기때문에 important를 설정 - 실무하다 보면 종종 발생 우선순위 문제
 const FormHelperTexts = styled(FormHelperText)`
@@ -31,7 +32,7 @@ const Boxs = styled(Box)`
   padding-bottom: 40px !important;
 `;
 
-const SignUp = (props) => {
+const SignUp = ({modal,setModal}) => {
     const theme = createTheme();
     const [checked, setChecked] = useState(false);
     const [emailError, setEmailError] = useState('');
@@ -42,7 +43,8 @@ const SignUp = (props) => {
     const [look,setLook] = useState(0);
     const [account,setAccount] = useState('')
     const history = useHistory();
-
+    const [change,setChange] = useState(1);
+    const [info,setInfo]=useState({})
     const test = 1;
     const handleAgree = (event) => {
         setChecked(event.target.checked);
@@ -56,23 +58,28 @@ const SignUp = (props) => {
     const onhandlePost = async (data) => {
         const { email, name, password } = data;
         const postData = { email, name, password };
+        setInfo(postData);
+        setChange(0)
+        console.log(change);
+        console.log(info);
         // post
-        await axios
-            .post('/user/save', postData)
-            // /gosu/save
-            .then(function (response) {
-                console.log(response, '성공');
-                localStorage.setItem('email',email);
-                localStorage.setItem('name',name);
-                localStorage.setItem('password',password);
-
-                history.push('/Gosu/SignUp/Survey');
-
-            })
-            .catch(function (err) {
-                console.log(err);
-                setRegisterError('회원가입에 실패하였습니다. 다시한번 확인해 주세요.');
-            });
+        // await axios
+        //     .post('/user/save', postData)
+        //     // /gosu/save
+        //     .then(function (response) {
+        //         console.log(response, '성공');
+        //         localStorage.setItem('email',email);
+        //         localStorage.setItem('name',name);
+        //         localStorage.setItem('password',password);
+        //         setModal(!modal);
+        //         // history.push('/Gosu/SignUp/Survey');
+        //
+        //     })
+        //     .catch(function (err) {
+        //         console.log(err);
+        //         setRegisterError('회원가입에 실패하였습니다. 다시한번 확인해 주세요.');
+        //     }
+        //     );
     };
 
 
@@ -124,7 +131,8 @@ const SignUp = (props) => {
     };
 
     return (
-        <ThemeProvider theme={theme}>
+        <>
+        {change == 1 ?<ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -210,17 +218,18 @@ const SignUp = (props) => {
                         <FormHelperTexts>{registerError}</FormHelperTexts>
                     </Boxs>
                 </Box>
-                <SurveyBox test='1'/>
             </Container>
-            {/*{*/}
-            {/*    look === 1?(*/}
-            {/*            <SurveyBox test={test}/>*/}
-            {/*    ): null*/}
-
-            {/*}*/}
-
         </ThemeProvider>
+        :<SurveySection ><SurveyBox info={info} /></SurveySection >}
+        </>
     );
 };
+const SurveySection = styled.div`
+  ${({ theme }) => theme.flex('center', 'flex-start', null)}
+  width: 750px;
+  margin: 1rem auto 0;
+  margin-top: 300px;
+
+`;
 
 export default SignUp;

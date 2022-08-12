@@ -3,9 +3,33 @@ import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import GosuMainSection from './GosuMainSection/GosuMainSection';
+import {getCookie} from "../../../shared/Cookie";
 // import GosuAsideBar from './GosuAsideBar/GosuAsideBar';
 
 function GosuInfo() {
+    const submitForm = () => {
+        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+            method: 'POST',
+            headers: {
+                Authorization: getCookie('is_login'),
+            },
+            body: JSON.stringify({
+                // user_id: 12,
+                // age: Number(age),
+                // service: radioValue.service,
+                // career: Number(career),
+                // gender: radioValue.gender,
+                // region: selectedTown,
+                // service_id: 2,
+                // email:email,
+            }),
+        })
+            .then(res => res.json())
+            .then(()=>{console.log('성공');
+                window.location.href='/ChatApp'})
+        // 프로필로 변경
+        // .then(goToFindGosu());
+    };
     // var [introduction,setIntroduction]=useState('안녕하세요 윈터 입니다.')
     const [gosuDetails, setGosuDetails] = useState({
         review_counts:4,
@@ -69,6 +93,7 @@ function GosuInfo() {
             )}
             <ReviewMoreBtn onClick={()=>{
                 window.location.href='/ChatApp';
+                submitForm();
             }}>상담하기</ReviewMoreBtn>
         </GosuDetailContainer>
     );

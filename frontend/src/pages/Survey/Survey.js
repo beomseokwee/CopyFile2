@@ -13,7 +13,8 @@ function Survey(props) {
     const [rating, setRating] = useState();
     const history = useHistory();
     const params = useParams();
-
+    const { id } = params;
+    console.log(id);
     useEffect(() => {
         getInfo();
     }, []);
@@ -28,7 +29,8 @@ function Survey(props) {
     const getInfo = () => {
         const { id } = params;
         console.log(id)
-        fetch(`/category/${id}`, {
+        let a = localStorage.getItem('id')
+        fetch(`/category/${a}/Survey/${id}`, {
             method:'GET',
             headers: {
                 Authorization: getCookie('is_login'),
@@ -39,6 +41,7 @@ function Survey(props) {
             console.log(res);
             let pageInfo = res;
             setPageInfo(pageInfo);
+            localStorage.removeItem('id')
             // console.log(pageInfo[0])
             });
     };
@@ -47,7 +50,7 @@ function Survey(props) {
             <SurveyContainer>
                 <Hero pageInfo={pageInfo} rating = {rating} />
                 <SurveySection pageInfo = {pageInfo}>
-                    <SurveyBox  />
+                    <SurveyBox id={id} />
                 <InfoBox />
                 </SurveySection>
             </SurveyContainer>

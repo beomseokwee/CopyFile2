@@ -30,7 +30,8 @@ const loginDB = (id, password) => {
     return function (dispatch, getState, { history }) {
         axios({
             method: "post",
-            url: "/user/login",headers: {
+            url: "/user/login",
+            headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             },
             data: {
@@ -48,8 +49,9 @@ const loginDB = (id, password) => {
                         nickname: id,
                     })
                 );
-                const access_token = res.data.token;
-                const refresh_token = res.data.token;
+                console.log(res.data.token)
+                const access_token = res.headers.access_token;
+                const refresh_token = res.headers.refresh_token;
                 console.log('성공')
                 // 토큰을 헤더 디폴트 값으로 설정
                 axios.defaults.headers.common[
@@ -59,7 +61,7 @@ const loginDB = (id, password) => {
                 //     "Authorization"
                 //     ] = `Bearer ${refresh_token}`;
                 //로컬에 사용자 정보 저장  email,nickname,role
-
+                console.log(axios.defaults.headers.common)
                 //쿠키에 토큰 저장
                 setCookie("is_login", res.headers.access_token);
                 setCookie("refresh_token", res.headers.refresh_token);
