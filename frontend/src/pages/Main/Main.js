@@ -7,10 +7,6 @@ import {getCookie} from "../../shared/Cookie";
 import Slide from "./Slide";
 import DetailCategory from "../DetailCategory";
 
-
-
-
-
 const Main = () => {
 
     // const [sliders2,setSliders2]=useState([]);
@@ -85,6 +81,7 @@ const Main = () => {
         </>
     );
 }
+
 
 export default Main;
 const Header1 = styled.div`

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-
 //STYLES
 import styled from 'styled-components';
 import {useSelector} from "react-redux";
@@ -8,22 +7,22 @@ import {useSelector} from "react-redux";
 
 function UserMy() {
     const [isToggleHeight, setIsToggleHeight] = useState(false);
-    const [matchedLists, setMatchedLists] = useState(['리스트1','리스트2']);
-    const [matchedUserLists, setMatchedUserLists] = useState(['리스트1','리스트2']);
+    const [matchedLists, setMatchedLists] = useState([{name:'test1'},{name:'test2'}]);
+    const [matchedUserLists, setMatchedUserLists] = useState([{name:'test3'},{name:'test4'}]);
     const user_info = useSelector((state) => state.user.user);
     const viewGosuList = () => {
         setIsToggleHeight(prev => !prev);
     };
-    const aaa = { image:'/images/4.jpg'}
-
     // useEffect(() => {
     //     fetch(`#`, {
+    //      method:'GET',
     //         headers: {
-    //             Authorization: getCookie('access_token'),
+    //             Authorization: getCookie('is_login'),
     //         },
     //     })
     //         .then(res => res.json())
     //         .then(res => {
+    //          console.log(res);
     //             setMatchedLists(res);
     //              setMatchedUserLists(res);
     //         });
@@ -32,6 +31,7 @@ function UserMy() {
     return (
         <Container>
             <Box>
+
                 {
                     user_info.role == 'ROLE_ADMIN' ?
                         (<>
@@ -110,7 +110,6 @@ function UserMy() {
                 {/*</ListWrap>*/}
 
             </Box>
-            {/*<img alt="인기 서비스" src= {aaa.image} />?*/}
         </Container>
     );
 }

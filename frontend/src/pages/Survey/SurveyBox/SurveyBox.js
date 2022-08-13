@@ -133,12 +133,12 @@ function SurveyBox({ pageInfo,id }) {
                 Authorization: getCookie('is_login'),
             },
             body: JSON.stringify({
-                // user_id: 12,
+                email:localStorage.getItem('email'),
                 age: Number(age),
                 career: Number(career),
                 gender: radioValue.gender,
                 region: selectedTown,
-                service_id: 2,
+
             }),
         })
             .then(res => res.json())

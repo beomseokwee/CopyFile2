@@ -41,7 +41,6 @@ function Survey(props) {
             console.log(res);
             let pageInfo = res;
             setPageInfo(pageInfo);
-            localStorage.removeItem('id')
             // console.log(pageInfo[0])
             });
     };

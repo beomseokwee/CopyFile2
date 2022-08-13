@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RatingStars } from '../../RatingStars';
+import {useSelector} from "react-redux";
 
 
 function GosuList({ setReviewLength }) {
@@ -38,16 +39,46 @@ function GosuList({ setReviewLength }) {
             _idx:4,
             hired:10,
         }]);
+    const [userLists, setUserLists] = useState([
+        {image:'/images/winter6.jpg',
+            name:'윈터님',
+            introduction:'안녕하세요 윈터입니다~',
+            count1:4,
+            review:5,
+            _idx:1,
+            hired:10,
+        },
+        {image:'/images/4.jpg',
+            name:'윈터님',
+            introduction:'안녕하세요 윈터입니다~',
+            count1:4,
+            review:5,
+            _idx:2,
+            hired:10,
+        },
+        {image:'/images/winter9.png',
+            name:'윈터님',
+            introduction:'안녕하세요 윈터입니다~',
+            count1:4,
+            review:5,
+            _idx:3,
+            hired:10,
+        },
+        {image:'/images/winter6.jpg',
+            name:'윈터님',
+            introduction:'안녕하세요 윈터입니다~',
+            count1:4,
+            review:5,
+            _idx:4,
+            hired:10,
+        }]);
     const params = useParams();
-
+    const user_info = useSelector((state) => state.user.user);
     // const { pathname } = location;
     const history = useHistory();
-
-    //
-    //
     // useEffect(() => {
-    //     const { id } = params;
-    //     fetch(`${BASE_URL}/applications/services/${id}/masters`, {
+    //
+    //     fetch(`/applications/services/${id}/masters`, {
     //         headers: {
     //             Authorization: localStorage.getItem('access_token'),
     //         },
@@ -59,13 +90,13 @@ function GosuList({ setReviewLength }) {
     // }, []);
 
     const goToGosuDetail = id => {
-        history.push(`/GosuInfo/${id}`);
+        window.location.href=`/GosuInfo/${id}`;
     };
 
     return (
         <>
             {gosuLists.length !=0 &&
-        <GosuListWrap>
+                (<GosuListWrap>
              {gosuLists.map((gosuList, i) => {
                 const {
                     image,
@@ -100,7 +131,7 @@ function GosuList({ setReviewLength }) {
                     </FindGosu>
                 );
             })}
-        </GosuListWrap>
+                </GosuListWrap>)
             }
         </>
     );
