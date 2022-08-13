@@ -5,7 +5,7 @@ import Radio from './Radio/Radio';
 import Select from './Select/Select';
 import Stepper from './Stepper/Stepper';
 import Loading from './Loading';
-import SignUp  from "../../SignUp";
+
 // QUESTION DATA
 import {
     SelectData,
@@ -18,17 +18,17 @@ import {
 // STYLES
 import * as S from './SurveyBoxEle';
 import {getCookie} from "../../../shared/Cookie";
-import {info} from "node-sass";
+// import {info} from "node-sass"; //개새끼
 
 // APIKEY
 
-function SurveyBox(props) {
+function GosuSurveyBox({info}) {
     const [loading, setLoading] = useState(false);
     const [selectedTown, setSelectedTown] = useState('');
     const email = localStorage.getItem('email')
     const name = localStorage.getItem('name')
     const password = localStorage.getItem('password')
-    console.log(props.info)
+    console.log(info)
     const [radioValue, setRadioValue] = useState({
 
         gender: '',
@@ -144,32 +144,31 @@ function SurveyBox(props) {
     const submitForm = () => {
         const age = radioValue.age.slice(0, 2);
         const [career] = radioValue.career.split('~');
-        console.log(props.info)
+        console.log(info)
         fetch(`https://jsonplaceholder.typicode.com/posts`, {
             method: 'POST',
             headers: {
                 Authorization: getCookie('is_login'),
             },
             body: JSON.stringify({
-                // user_id: 12,
-                email : props.info.email,
-                password : props.info.password,
-                name : props.info.name,
+                email : info.email,
+                password : info.password,
+                name : info.name,
                 age: age,
                 service: radioValue.service,
                 career: career,
                 gender: radioValue.gender,
                 region: selectedTown,
-                service_id: 2,
             }),
         })
             .then(res => res.json())
-            .then(()=>{console.log('성공');
+            .then((res)=>{console.log(res);
                 localStorage.removeItem('email')
                 localStorage.removeItem('name')
                 localStorage.removeItem('password')
 
-            window.location.href='/GosuMain'})
+            // window.location.href='/GosuMain'
+            })
             // 프로필로 변경
             // .then(goToFindGosu());
     };
@@ -197,4 +196,4 @@ function SurveyBox(props) {
     );
 }
 
-export default SurveyBox;
+export default GosuSurveyBox;

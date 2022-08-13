@@ -2,43 +2,72 @@
 import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom';
 import axios from 'axios';
-
-
+import {getCookie} from '../../../shared/Cookie';
+import { createAction } from 'redux-actions';
+import { useParams } from 'react-router-dom';
 
 function Chat({socket, gosu,user, room}) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList,setMessageList] = useState([]); // 상대방이 보낸 메시지 표시하기위한 변수
+    let {id} = useParams();
 
-    // useEffect(()=>{
-    //     sendMessage()
-    // },[messageList])
+    useEffect(()=>{
+        axios.get(`/chat/sender/room/${id}`) // 데이터리스트 받아오기
+            // axios.get('https://codingapple1.github.io/shop/data2.json')
+            .then(function(res){
+                let data = res.data
+                data.splice(0,1)
+                socket.emit("send_message",data);
+                setMessageList((list)=>[...list,...data]);
+                setCurrentMessage("");
+            });
+    },[]) // 첫 렌더링 됐을때 그동안 채팅기록 불러오기
 
 
     const sendMessage = async() => {
+
         if (currentMessage !== ""){ // 메시지가 비어있지않
             const messageData = {
-                room: room,
-                // author : username,
+                room : room,
                 gosu : gosu,
                 user : user,
-                message : currentMessage,
-                time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+                msg : currentMessage,
+                createdAt: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
             };
 
             await socket.emit("send_message",messageData);
             setMessageList((list)=>[...list,messageData]);
             setCurrentMessage("");
 
-            axios.post('https://jsonplaceholder.typicode.com/posts',{
-                // chatHistory : messageList,
-                msg : messageData.message,
-                gosu : messageData.gosu,   // 받는사람
-                user : messageData.user, // 보내는사람
-                roomnumber : messageData.room,
-            }).then(function(res){
-                console.log(`성공!!${res.data}`);
-                console.log(messageData);
-            })
+
+
+            //fetch('/chat/insert',{
+            //	method: 'POST',
+            //	headers: {
+            //		Authorization:getCookie('is_login'),
+            //	},
+            //	body: JSON.stringify({
+            //	messageData,
+            //	}),
+            //}).then(res => res.json())
+            //.then((res)=>{
+            //	console.log(res)
+            //})
+            axios
+                .post('/chat/insert', {
+                    msg : messageData.msg,
+                    gosu : messageData.gosu,
+                    user : messageData.user,
+                    room : messageData.room,
+                    createdAt : messageData.createdAt
+                })
+                .then(function(res){
+                    console.log(res);
+                    console.log(messageData);
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
 
         }
     }
@@ -48,6 +77,7 @@ function Chat({socket, gosu,user, room}) {
             setMessageList((list)=>[...list,data])
         })
     },[socket])
+
     return (
         <div className='chat-window'>
             <div className='chat-header'>
@@ -57,15 +87,16 @@ function Chat({socket, gosu,user, room}) {
                 <ScrollToBottom className='message-container'>
                     {messageList.map((messageContent,i)=>{
                         // return <div className='message' id ={username === messageContent.author ? "you" : "other"}>
-                        return <div key={i} className='message' id ={gosu === messageContent.gosu ? "you" : "other"}>
+                        return <div className='message' id ={
+                            messageContent.gosu || messageContent.user == localStorage.getItem('nickname') ? "you" : "other"    }>
 
                             {/* 여기서 아이디값주는 이유는 css 적용 */}
                             <div>
                                 <div className='message-content'>
-                                    <p>{messageContent.message}</p>
+                                    <p>{messageContent.msg}</p>
                                 </div>
                                 <div className='message-meta'>
-                                    <p id="time">{messageContent.time}</p>
+                                    <p id="time">{messageContent.createdAt}</p>
                                     {messageContent.gosu != null?
                                         (<p id="gosu">{messageContent.gosu}</p>)
                                         :

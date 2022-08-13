@@ -22,12 +22,12 @@ function ChatApp() {
             },
             body: JSON.stringify({
                 email:localStorage.getItem('email')
-        }),
+            }),
         })
             .then(res => res.json())
             // .then(goToFindGosu());
             .then((res)=>{
-                console.log(res)
+                console.log(typeof(res))
                 console.log('보내기 성공 ')
                 let room = res.id;
                 setRoom(room);
@@ -47,16 +47,13 @@ function ChatApp() {
     }else{
         user=localStorage.getItem('nickname');
     }
-    console.log(gosu);
-    console.log(user);
-    console.log(role);
 
     useEffect(()=>{
         joinRoom()
     },[room]);
 
     const joinRoom = () =>{
-        if(gosu !== null && room !== ""){
+        if(gosu !== "" && room !== ""){
             socket.emit("join_room", room);
         }
     } // 유저이름이 있고, 방이름이 있을때만 동작
@@ -76,8 +73,8 @@ function ChatApp() {
 
 
 
-            </>
-        );
+        </>
+    );
 }
 
 export default ChatApp;

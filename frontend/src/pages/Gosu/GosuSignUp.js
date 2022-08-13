@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import SurveyBox from './SurveyBox/SurveyBox'
+import SurveyBox from './SurveyBox/GosuSurveyBox';
 
 import {
     Avatar,
@@ -132,7 +132,8 @@ const SignUp = ({modal,setModal}) => {
 
     return (
         <>
-        {change == 1 ?<ThemeProvider theme={theme}>
+        {change == 1 ?
+            <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -219,8 +220,8 @@ const SignUp = ({modal,setModal}) => {
                     </Boxs>
                 </Box>
             </Container>
-        </ThemeProvider>
-        :<SurveySection ><SurveyBox info={info} /></SurveySection >}
+        </ThemeProvider>:
+        <SurveySection ><SurveyBox info={info}/></SurveySection >}
         </>
     );
 };

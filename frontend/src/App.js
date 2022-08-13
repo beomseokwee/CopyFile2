@@ -16,11 +16,12 @@ import {Signup} from "./pages/NavEle";
 import DetailCategory from "./pages/DetailCategory";
 import QuotationList from "./pages/QuotationList/QuotationList";
 import GosuMain from "./pages/Gosu/GosuMain";
-import GosuSurvey from "./pages/Gosu/GosuSurvey";
-// import GosuSignUp from "./pages/Gosu/GosuSignUp";
+// import GosuSurvey from "./pages/Gosu/GosuSurvey";
+import GosuSignUp from "./pages/Gosu/GosuSignUp";
 import GosuDetail from "./pages/Gosu/GosuDetail/GosuDetail";
 import { useHistory } from 'react-router-dom';
 import ChatApp from "./pages/Chat/client/ChatApp";
+import ChatList from "./pages/Chat/client/ChatList";
 import GosuInfo from "./pages/Gosu/GosuQuotation/GosuInfo";
 import GosuInfoDetail from "./pages/Gosu/GosuQuotationDetail/GosuInfo";
 function App(props) {
@@ -41,15 +42,17 @@ function App(props) {
         <ConnectedRouter history={history}>
             <Route path="/login" exact component={Login}/>
             <Route path="/signup" exact component={SignUp}/>
-            {/*<Route path="/Gosu/SignUp" exact component={GosuSignUp}/>*/}
+
             <Route path="/" exact component={Main}/>
             <Route path="/QuotationList" exact component={QuotationList}/>
             <Route path="/ChatApp" exact component={ChatApp}/>
+            <Route path="/ChatApp/:id" exact component={ChatApp}/>
+            <Route path="/ChatList" exact component={ChatList}/>
             <Route path="/GosuMain" exact component={GosuMain}/>
             <Route path="/GosuDetail" exact component={GosuDetail}/>
             <Route path="/GosuInfoDetail/:id" exact component={GosuInfoDetail}/>
             <Route exact path="/GosuInfo/:id" component={GosuInfo} />
-            <Route path="/Gosu/SignUp" exact component={GosuSurvey}/>
+            <Route path="/Gosu/SignUp" exact component={GosuSignUp}/>
             <Route path="/category/" exact component={DetailCategory}/>
             <Route path="/category/:id" exact  component={DetailCategory}/>
             <Route exact path="/category/:id/survey" exact component={Survey} />

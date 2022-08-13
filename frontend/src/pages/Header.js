@@ -84,7 +84,7 @@ const Header = (props) => {
                                         window.location.pathname !='/ChatApp'?(
                                         <S.MenuList style={{marginRight:'40px'}} onClick={()=>{
 
-                                            window.location.href='/ChatApp';
+                                            window.location.href='/ChatList';
                                         }}>채팅</S.MenuList>):null
                                     }
 

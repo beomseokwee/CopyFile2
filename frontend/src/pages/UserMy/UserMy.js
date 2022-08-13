@@ -24,7 +24,8 @@ function UserMy() {
     //     })
     //         .then(res => res.json())
     //         .then(res => {
-    //             setMatchedLists(res.results);
+    //             setMatchedLists(res);
+    //              setMatchedUserLists(res);
     //         });
     // }, []);
     // const matchedLists =
