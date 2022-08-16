@@ -145,9 +145,11 @@ function GosuSurveyBox({info}) {
         const age = radioValue.age.slice(0, 2);
         const [career] = radioValue.career.split('~');
         console.log(info)
-        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+        fetch(`/gosu/signup`, {
+
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: getCookie('is_login'),
             },
             body: JSON.stringify({
@@ -163,9 +165,6 @@ function GosuSurveyBox({info}) {
         })
             .then(res => res.json())
             .then((res)=>{console.log(res);
-                localStorage.removeItem('email')
-                localStorage.removeItem('name')
-                localStorage.removeItem('password')
 
             // window.location.href='/GosuMain'
             })

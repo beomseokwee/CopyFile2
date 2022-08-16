@@ -3,137 +3,227 @@ import { useLocation, useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RatingStars } from '../../RatingStars';
 import {useSelector} from "react-redux";
-
+// import Loading from './Loading';
 
 function GosuList({ setReviewLength }) {
-    const [gosuLists, setGosuLists] = useState([
-        {image:'/images/winter9.png',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:1,
-            hired:10,
-    },
-        {image:'/images/winter8.jpg',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:2,
-            hired:10,
-        },
-        {image:'/images/winter7.jpg',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:3,
-            hired:10,
-        },
-        {image:'/images/winter6.jpg',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:4,
-            hired:10,
-        }]);
-    const [userLists, setUserLists] = useState([
-        {image:'/images/winter6.jpg',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:1,
-            hired:10,
-        },
-        {image:'/images/4.jpg',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:2,
-            hired:10,
-        },
-        {image:'/images/winter9.png',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:3,
-            hired:10,
-        },
-        {image:'/images/winter6.jpg',
-            name:'윈터님',
-            introduction:'안녕하세요 윈터입니다~',
-            count1:4,
-            review:5,
-            _idx:4,
-            hired:10,
-        }]);
+    const [gosuLists, setGosuLists] = useState([]);
+    useEffect(() => {
+        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem('is_login'),
+            },
+            body: JSON.stringify(
+                {email: localStorage.getItem('email')}
+            )
+        })
+            .then(res => res.json())
+            .then(res => {
+                setGosuLists([
+                    {
+                        image: '/images/winter9.png',
+                        name: '윈터님',
+                        introduction: '안녕하세요 윈터입니다~',
+                        count1: 4,
+                        review: 5,
+                        _idx: 1,
+                        hired: 10,
+                    },
+                    {
+                        image: '/images/winter8.jpg',
+                        name: '윈터님',
+                        introduction: '안녕하세요 윈터입니다~',
+                        count1: 4,
+                        review: 5,
+                        _idx: 2,
+                        hired: 10,
+                    },
+                    {
+                        image: '/images/winter7.jpg',
+                        name: '윈터님',
+                        introduction: '안녕하세요 윈터입니다~',
+                        count1: 4,
+                        review: 5,
+                        _idx: 3,
+                        hired: 10,
+                    },
+                    {
+                        image: '/images/winter6.jpg',
+                        name: '윈터님',
+                        introduction: '안녕하세요 윈터입니다~',
+                        count1: 4,
+                        review: 5,
+                        _idx: 4,
+                        hired: 10,
+                    }
+                ])
+            });
+    }, []);
+    const [userLists, setUserLists] = useState([]);
     const params = useParams();
     const user_info = useSelector((state) => state.user.user);
     // const { pathname } = location;
     const history = useHistory();
-    // useEffect(() => {
-    //
-    //     fetch(`/applications/services/${id}/masters`, {
-    //         headers: {
-    //             Authorization: localStorage.getItem('access_token'),
-    //         },
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             setGosuLists(res);
-    //         });
-    // }, []);
+    useEffect(() => {
+        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem('is_login'),
+            },
+            body: JSON.stringify(
+                {email: localStorage.getItem('email')}
+            )
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(localStorage.getItem('email'))
+                console.log(res)
+                setUserLists([
+
+                    {
+                        image: '/images/winter6.jpg', //고수 or 유저 이미지
+                        name: '윈터님', // 이름
+                        introduction: '안녕하세요 윈터입니다~', // 고수 or 유저 한줄소개
+                        count1: 4, // 고수 or 유저 별점
+                        review: 5, // 고수 or 유저 리뷰개수
+                        _idx: 1, // 고수 or 유저 아이디
+                        hired: 10, // 고수는 고용된 횟수 , 유저는 고용한 횟수
+                    },
+                    {
+                        image: '/images/4.jpg',
+                        name: '윈터님',
+                        introduction: '안녕하세요 윈터입니다~',
+                        count1: 4,
+                        review: 5,
+                        _idx: 2,
+                        hired: 10,
+                    },
+                    {
+                        image: '/images/winter9.png',
+                        name: '윈터님',
+                        introduction: '안녕하세요 윈터입니다~',
+                        count1: 4,
+                        review: 5,
+                        _idx: 3,
+                        hired: 10,
+                    },
+                    {
+                        image: '/images/winter6.jpg',
+                        name: '윈터님',
+                        introduction: '안녕하세요 윈터입니다~',
+                        count1: 4,
+                        review: 5,
+                        _idx: 4,
+                        hired: 10,
+                    }
+                ])
+            });
+    }, []);
 
     const goToGosuDetail = id => {
-        window.location.href=`/GosuInfo/${id}`;
+        window.location.href = `/GosuInfo/${id}`;
     };
-
+    const goToUserDetail = id => {
+        window.location.href = `/GosuInfoDetail/${id}`;
+    };
+    //{user_info && user_info.role != 'ROLE_HELPER' && userList.length == 0 ?
+// <div> 신청한 유저가 없습니다</div> : 유저리스트 불러오기}
     return (
         <>
-            {gosuLists.length !=0 &&
-                (<GosuListWrap>
-             {gosuLists.map((gosuList, i) => {
-                const {
-                    image,
-                    name,
-                    introduction,
-                    count1,
-                    review,
-                    _idx,
-                    hired,
-                } = gosuList;
-                console.log(gosuList);
-                return (
-                    <FindGosu
-                        key={i}
-                        name={name}
-                        onClick={() => goToGosuDetail(_idx)}
-                    >
-                        <GosuListImg alt="고수 리스트 사진" src={image} />
-                        <GosuListForm>
-                            <GosuListTitle>{name}</GosuListTitle>
-                            <GosuListContent>{introduction}</GosuListContent>
-                            <GosuListReviewForm>
-                                {count1 && (
-                                    <GosuListStar>
-                                        별점 : {RatingStars(count1)}
-                                    </GosuListStar>
-                                )}
-                                <GosuListHire>{hired}회 고용됨</GosuListHire>
-                            </GosuListReviewForm>
-                            <GosuListComment>리뷰 개수 : {review}</GosuListComment>
-                        </GosuListForm>
-                    </FindGosu>
-                );
-            })}
-                </GosuListWrap>)
+            {
+                user_info &&
+                <>
+                    {user_info.role == 'ROLE_USER' ? <>
+                        {
+                            gosuLists.length != 0 ?
+                                (<GosuListWrap>
+                                    {gosuLists.map((gosuList, i) => {
+                                        const {
+                                            image,
+                                            name,
+                                            introduction,
+                                            count1,
+                                            review,
+                                            _idx,
+                                            hired,
+                                        } = gosuList;
+                                        console.log(gosuList);
+                                        return (
+                                            <FindGosu
+                                                key={i}
+                                                name={name}
+                                                onClick={() => goToGosuDetail(_idx)}
+                                            >
+                                                <GosuListImg alt="고수 리스트 사진" src={image}/>
+                                                <GosuListForm>
+                                                    <GosuListTitle>{name}</GosuListTitle>
+                                                    <GosuListContent>{introduction}</GosuListContent>
+                                                    <GosuListReviewForm>
+                                                        {count1 && (
+                                                            <GosuListStar>
+                                                                별점 : {RatingStars(count1)}
+                                                            </GosuListStar>
+                                                        )}
+                                                        <GosuListHire>{hired}회 고용됨</GosuListHire>
+                                                    </GosuListReviewForm>
+                                                    <GosuListComment>리뷰 개수 : {review}</GosuListComment>
+                                                </GosuListForm>
+                                            </FindGosu>
+                                        );
+                                    })}
+                                </GosuListWrap>) : (<>
+                                    <GosuListTitle>매칭된 유저님들을 로딩중 입니다. </GosuListTitle>
+                                </>)
+                        }</> : <>
+                        {userLists.length != 0 ?
+                            // (<GosuListTitle>얍얍얍</GosuListTitle>)
+                            (<GosuListWrap>
+                                {userLists.map((gosuList, i) => {
+                                    const {
+                                        image,
+                                        name,
+                                        introduction,
+                                        count1,
+                                        review,
+                                        _idx,
+                                        hired,
+                                    } = gosuList;
+                                    console.log(gosuList);
+                                    return (
+                                        <FindGosu
+                                            key={i}
+                                            name={name}
+                                            onClick={() => goToUserDetail(_idx)}
+                                        >
+                                            <GosuListImg alt="고수 리스트 사진" src={image}/>
+                                            <GosuListForm>
+                                                <GosuListTitle>{name}</GosuListTitle>
+                                                <GosuListContent>{introduction}</GosuListContent>
+                                                <GosuListReviewForm>
+                                                    {count1 && (
+                                                        <GosuListStar>
+                                                            별점 : {RatingStars(count1)}
+                                                        </GosuListStar>
+                                                    )}
+                                                    <GosuListHire>{hired}회 고용됨</GosuListHire>
+                                                </GosuListReviewForm>
+                                                <GosuListComment>리뷰 개수 : {review}</GosuListComment>
+                                            </GosuListForm>
+                                        </FindGosu>
+                                    );
+                                })}
+                            </GosuListWrap>)
+
+                            : (<>
+                                <GosuListTitle>매칭된 고수님들을 로딩중입니다 </GosuListTitle>
+                            </>)
+                        }
+                    </>
+                    }</>
             }
-        </>
+                </>
     );
 }
 

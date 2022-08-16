@@ -49,7 +49,7 @@ function Survey(props) {
             <SurveyContainer>
                 <Hero pageInfo={pageInfo} rating = {rating} />
                 <SurveySection pageInfo = {pageInfo}>
-                    <SurveyBox id={id} />
+                    <SurveyBox id={id} pageInfo={pageInfo}/>
                 <InfoBox />
                 </SurveySection>
             </SurveyContainer>

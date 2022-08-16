@@ -88,7 +88,7 @@ function Chat({socket, gosu,user, room}) {
                     {messageList.map((messageContent,i)=>{
                         // return <div className='message' id ={username === messageContent.author ? "you" : "other"}>
                         return <div className='message' id ={
-                            messageContent.gosu || messageContent.user == localStorage.getItem('nickname') ? "you" : "other"    }>
+                            messageContent.gosu == localStorage.getItem('nickname') || messageContent.user == localStorage.getItem('nickname') ? "you" : "other"    }>
 
                             {/* 여기서 아이디값주는 이유는 css 적용 */}
                             <div>

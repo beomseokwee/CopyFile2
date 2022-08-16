@@ -11,18 +11,17 @@ function GosuInfo() {
     var [quotationPrice,setQuotationPrice]=useState('')
     var [gosuDetails, setGosuDetails] = useState({
         review_counts:4,
-    uploaded_image:'/images/winter8.jpg',
-        profile_image:'/images/winter9.png',
-        name:'winter',
-        main_service:'서빙',
-        average_rating:5,
-        introduction,
-        quotationPrice,
-        career:'10',
-        region:'서울',
-        hired:'30',
-        certification:'ok',
-        business:'ok',
+        profile_image:'/images/winter9.png', //이미지
+        name:'winter', // // 고수가 가입햇을때 저장된 이름
+        category:'서빙', // 고수가 가입햇을때 저장된 서비스
+        average_rating:5, //평균 별점
+        introduction, // 이건 예외 너가 보내주는 데이터 X 작성할 한줄 소개
+        quotationPrice, //이건 예외 너가 보내주는 데이터 X 작성할 견적서 가격
+        career:'10',  // 고수가 가입했을때 저장된 경력
+        region:'서울', // 고수가 가입했을때 저장된 지역
+        hired:'30', // 고용된 횟수
+        certification:'ok', // 본인 인증 완료 여부?? 일단 넣음 하드코딩으로 갈지 고민중
+        business:'ok', // 본인인증과 동일 하드코딩 or 지울지 고민중
     });
     const [gosuInfo, setGosuInfo] = useState([{name:'윈터',
         rating:4,
@@ -60,6 +59,7 @@ function GosuInfo() {
                 Authorization: getCookie('is_login'),
             },
             body: JSON.stringify({
+                // 고수의 이메일
                 introduction:introduction,
                 quotationPrice:quotationPrice,
             }),

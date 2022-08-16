@@ -130,6 +130,7 @@ function SurveyBox({ pageInfo,id }) {
         fetch(`/category/${a}/survey/${id}/save`, {
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: getCookie('is_login'),
             },
             body: JSON.stringify({
@@ -138,6 +139,7 @@ function SurveyBox({ pageInfo,id }) {
                 career: Number(career),
                 gender: radioValue.gender,
                 region: selectedTown,
+                category : pageInfo.name,
 
             }),
         })

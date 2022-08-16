@@ -39,6 +39,7 @@ function GosuInfo() {
         main_service:'서빙',
         average_rating:5,
         introduction:'안녕하세요 에스파 윈터 입니다!',
+        quotationPrice:'100,000원',
         career:'10',
         region:'서울',
         hired:'30',

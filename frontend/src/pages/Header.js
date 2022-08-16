@@ -70,7 +70,7 @@ const Header = (props) => {
             <S.MenuBox>
                 <S.MenuList onClick={()=>{
                     window.location.href='/QuotationList'
-
+                    // history.push('/QuotationList')
                 }} >견적보기</S.MenuList>
                 <S.MenuList>고수찾기</S.MenuList>
             </S.MenuBox>

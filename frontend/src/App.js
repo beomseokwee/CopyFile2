@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -28,6 +28,7 @@ function App(props) {
     const dispatch = useDispatch();
     const token = getCookie("is_login")
     const history =useHistory();
+
     useEffect(()=>{
         if(token) { //토큰이 존재하면 로그인을 유지 API 호출
             dispatch(userActions.loginCheckDB());

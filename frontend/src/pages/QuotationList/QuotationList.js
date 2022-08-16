@@ -1,21 +1,42 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import QuotionListData from "./QuotionListData";
+import {useSelector} from "react-redux";
 const QuotationList = () => {
     const [review, setReview] = useState();
     const setReviewLength = data => {
         setReview(data);
     };
+    const user_info = useSelector((state) => state.user.user);
     return (
         <FindGosuForm>
+            {
+                user_info &&
+            <>
+            {
+                user_info.role =='ROLE_ADMIN' ?(
+                <>
             <Header>
-                <GosuTitle>고수 리스트</GosuTitle>
+                <GosuTitle>유저 리스트</GosuTitle>
                 <GosuTitleSub>지역, 카테고리</GosuTitleSub>
                 <FilterGosuForm>
-                    <TotalGosu>{review} 명의 고수</TotalGosu>
+                    <TotalGosu>{review} 명의 유저</TotalGosu>
                 </FilterGosuForm>
             </Header>
             <QuotionListData setReviewLength={setReviewLength} />
+                </>):(<>
+                <Header>
+                <GosuTitle>고수 리스트</GosuTitle>
+                <GosuTitleSub>지역, 카테고리</GosuTitleSub>
+                <FilterGosuForm>
+                <TotalGosu>{review} 명의 고수</TotalGosu>
+                </FilterGosuForm>
+                </Header>
+                <QuotionListData setReviewLength={setReviewLength} />
+            </>)
+            }
+            </>
+            }
         </FindGosuForm>
     );
 };
