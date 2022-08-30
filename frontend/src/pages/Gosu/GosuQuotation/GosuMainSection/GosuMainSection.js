@@ -33,14 +33,14 @@ function GosuMainSection({ gosuDetails, gosuInfo }) {
             {/*    // handleMoreBtn={handleMoreBtn}*/}
             {/*    closed={closed}*/}
             {/*/>*/}
-            {gosuInfo.length !== 0 && (
-                <GosuReviews
-                    gosuDetails={gosuDetails}
-                    gosuInfo={gosuInfo}
-                    // handleMoreBtn={handleMoreBtn}
-                    closed={closed}
-                />
-            )}
+            {/*{gosuInfo.length !== 0 && (*/}
+            {/*    <GosuReviews*/}
+            {/*        gosuDetails={gosuDetails}*/}
+            {/*        gosuInfo={gosuInfo}*/}
+            {/*        // handleMoreBtn={handleMoreBtn}*/}
+            {/*        closed={closed}*/}
+            {/*    />*/}
+            {/*)}*/}
             <GosuFAQ />
         </GosuInfo>
     );

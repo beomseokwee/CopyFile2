@@ -1,23 +1,23 @@
 
 import styled from 'styled-components';
 
-import { RatingStars } from '../../../../RatingStars';
+// import { RatingStars } from '../../../../RatingStars';
+
 
 function GosuOverview({ gosuDetails }) {
-    const { profile_image, name, main_service, average_rating, review_counts } =
+    const {  gosuName, gosuCategory ,gosuGender ,gosuCareer,gosuRegion,gosuAge } =
         gosuDetails;
 
     return (
         <Overview>
-            <GosuProfileImg alt="고수이미지" src={profile_image} />
+            <GosuProfileImg alt="고수이미지" src={`/images/winter${localStorage.getItem('id2')}.jpg`} />
             <GosuHeadBox>
-                <GosuTitle>{name}</GosuTitle>
-                <GosuCategory>{main_service}</GosuCategory>
-                <GosuGradeBox>
-                    {RatingStars(average_rating)}
-                    <GosuGrade>{average_rating}</GosuGrade>
-                    <GosuReviewCount>({review_counts}개의 리뷰)</GosuReviewCount>
-                </GosuGradeBox>
+                <GosuTitle>{gosuName}</GosuTitle>
+                <GosuCategory>나이 : {gosuAge}</GosuCategory>
+                <GosuCategory>성별 : {gosuGender}</GosuCategory>
+                <GosuCategory>카테고리 :{gosuCategory}</GosuCategory>
+                <GosuCategory>사는지역 : {gosuRegion}</GosuCategory>
+                <GosuCategory>경력 : {gosuCareer}년</GosuCategory>
             </GosuHeadBox>
         </Overview>
     );

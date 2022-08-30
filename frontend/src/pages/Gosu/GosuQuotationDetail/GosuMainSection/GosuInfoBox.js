@@ -11,12 +11,13 @@ import {Box, TextField} from "@mui/material";
 
 function GosuInfoBox({ introduction,setIntroduction,quotationPrice,setQuotationPrice, gosuDetails, handleMoreBtn, closed }) {
     const {
-        info,
-        hired,
-        region,
+        name,
+        email,
+        age,
+        category,
+        gender,
         career,
-        certification,
-        business,
+        region,
     } = gosuDetails;
 
     const basicLists = [
@@ -26,19 +27,36 @@ function GosuInfoBox({ introduction,setIntroduction,quotationPrice,setQuotationP
         },
         {
             icon: <AiOutlineTrophy />,
-            text: `${hired}회 고용됨`,
+            text: `10회 고용됨`,
         },
         {
             icon: <GrLocation />,
             text: `서울특별시 ${region}`,
         },
     ];
-
+    // <ul>유저의 요청 카테고리 : 편의점알바</ul>
+    // <ul>유저의 이메일 : wijang777@naver.com</ul>
+    // <ul>유저가 원하는 성별 : 남</ul>
+    // <ul>유저가 원하는 나이 : 20</ul>
+    // <ul>유저가 원하는 지역 : 서울</ul>
+    // <ul>유저가 원하는 경력 : 10년</ul>
     return (
         <GosuInfoContainer>
+            <GosuIntroduce2>
+                <h2>{name}</h2>
+                <GosuQuestion>유저의 요청 카테고리 : {category}</GosuQuestion>
+                <GosuQuestion>유저의 이메일 : {email} </GosuQuestion>
+                <GosuQuestion>유저가 원하는 성별 : {gender}</GosuQuestion>
+                <GosuQuestion>유저가 원하는 나이 : {age}</GosuQuestion>
+                <GosuQuestion>유저가 원하는 지역 : {region}</GosuQuestion>
+                <GosuQuestion>유저가 원하는 경력 : {career}</GosuQuestion>
+            </GosuIntroduce2>
+
             <GosuIntroduce>
                 <h2>견적 결과 가격</h2>
-                <TextField onChange={(e)=>{
+                <TextField
+                    color = 'warning'
+                    onChange={(e)=>{
                     setQuotationPrice(e.target.value)
                 }} id="outlined-basic" label="견적 총 예상 가격" variant="outlined" />
             </GosuIntroduce>
@@ -50,7 +68,9 @@ function GosuInfoBox({ introduction,setIntroduction,quotationPrice,setQuotationP
                     maxWidth: '100%',
                 }}
                     >
-                <TextField onChange={(e)=>{
+                <TextField
+                    color = 'warning'
+                    onChange={(e)=>{
                     setIntroduction(e.target.value)
                 }} fullWidth label="소개 간단히 적어주세요~" id="fullWidth" />
             </Box>
@@ -77,25 +97,15 @@ function GosuInfoBox({ introduction,setIntroduction,quotationPrice,setQuotationP
                     </li>
                     <li>
                         <GrDocumentText />
-                        <span>사업자등록증 {business ? '등록완료' : '미등록'}</span>
+                        <span>사업자등록증 등록완료</span>
                     </li>
                     <li>
                         <AiOutlineSafetyCertificate />
-                        <span>자격증 {certification ? '등록완료' : '미등록'}</span>
+                        <span>자격증 등록완료</span>
                     </li>
                 </AddedInfo>
             </GosuAddedInfo>
-            <GosuOffer>
-                <h2>제공 서비스</h2>
-                <ServiceBox>
-                    <ServiceList>
-                        <li>사무실/상업공간 청소 업체</li>
-                        <li>이사/입주 청소 업체</li>
-                        <li>준공 청소</li>
-                        <li>바닥 청소 (왁스 코팅)</li>
-                    </ServiceList>
-                </ServiceBox>
-            </GosuOffer>
+
             <GosuService>
                 <h2>확인 완료</h2>
                 <ServiceDetailBox>
@@ -115,6 +125,9 @@ function GosuInfoBox({ introduction,setIntroduction,quotationPrice,setQuotationP
         </GosuInfoContainer>
     );
 }
+const FaqCard = styled.li`
+margin: 30px 0;
+`;
 
 const GosuInfoContainer = styled.section`
   border-bottom: 1px solid #dbdbdb;
@@ -132,6 +145,11 @@ const GosuInfoContainer = styled.section`
 
 const GosuIntroduce = styled.div`
   padding: 50px 0 10px 0;
+`;
+const GosuIntroduce2 = styled.div`
+  padding: 50px 0 10px 0;
+  border-bottom: 1px solid #dbdbdb;
+  
 `;
 
 const GosuBasicInfo = styled.div`
@@ -216,6 +234,11 @@ const ViewMoreBtn = styled.button`
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+`;
+const GosuQuestion = styled.p`
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 export default GosuInfoBox;

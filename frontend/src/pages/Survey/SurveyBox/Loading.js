@@ -1,12 +1,16 @@
 import React from 'react';
 
 import styled, { keyframes } from 'styled-components';
-
+import {useSelector} from "react-redux";
 function Loading() {
+    const user_info = useSelector((state) => state.user.user);
     return (
+        <>
+        {user_info &&
+
         <Container>
             <TextBox>
-                <H1>윈터님께 딱 맞는 고수들을 찾고있습니다</H1>
+                <H1>{user_info.nickname}님께 딱 맞는 전문가들을 찾고있습니다</H1>
                 <TextImg src="/images/4.jpg" alt="winter" />
             </TextBox>
             <Loader>
@@ -16,6 +20,8 @@ function Loading() {
                 <Dot />
             </Loader>
         </Container>
+        }
+        </>
     );
 }
 

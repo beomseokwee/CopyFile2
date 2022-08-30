@@ -1,12 +1,15 @@
 import React from 'react';
 
 import styled, { keyframes } from 'styled-components';
+import {useSelector} from "react-redux";
 
 function Loading() {
     return (
+        <>
+
         <Container>
             <TextBox>
-                <H1>윈터님께 딱 맞는 고수들을 찾고있습니다</H1>
+                <H1>비트전문가님께 딱 맞는 유저님들을 찾고있습니다</H1>
                 <TextImg src="/images/4.jpg" alt="winter" />
             </TextBox>
             <Loader>
@@ -16,6 +19,7 @@ function Loading() {
                 <Dot />
             </Loader>
         </Container>
+        </>
     );
 }
 
@@ -53,6 +57,7 @@ const Loader = styled.div`
   width: 200px;
   height: 200px;
 `;
+
 const Outer = styled.div`
   position: absolute;
   top: 0;

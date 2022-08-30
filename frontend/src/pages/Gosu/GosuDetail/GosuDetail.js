@@ -52,7 +52,6 @@ function GosuDetail() {
   // useEffect(() => {
   //   getQuotationList();
   // }, []);
-
   // useEffect(() => {
   //   // console.log(quotationUsers);
   // }, [quotationUsers]);

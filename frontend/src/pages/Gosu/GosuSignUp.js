@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import SurveyBox from './SurveyBox/GosuSurveyBox';
-
+import { Text } from "../../elements";
 import {
     Avatar,
     Button,
@@ -144,7 +144,10 @@ const SignUp = ({modal,setModal}) => {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
+                    {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />*/}
+                    <Text color='#DB631F' size="21px" >
+                        SOME BODY HELP ME
+                    </Text>
                     <Typography component="h1" variant="h5">
                         회원가입
                     </Typography>
@@ -153,6 +156,7 @@ const SignUp = ({modal,setModal}) => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         autoFocus
                                         fullWidth
@@ -166,6 +170,7 @@ const SignUp = ({modal,setModal}) => {
                                 <FormHelperTexts>{emailError}</FormHelperTexts>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         fullWidth
                                         type="password"
@@ -178,6 +183,7 @@ const SignUp = ({modal,setModal}) => {
                                 <FormHelperTexts>{passwordState}</FormHelperTexts>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         fullWidth
                                         type="password"
@@ -190,6 +196,7 @@ const SignUp = ({modal,setModal}) => {
                                 <FormHelperTexts>{passwordError}</FormHelperTexts>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         fullWidth
                                         id="name"
@@ -211,6 +218,7 @@ const SignUp = ({modal,setModal}) => {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
+                                style={{backgroundColor:'#F2AA4C'}}
                                 size="large"
                             >
                                 회원가입

@@ -47,7 +47,7 @@ export const PrevBtn = styled(Btns)`
 `;
 
 export const NextBtn = styled(Btns)`
-  background-color: rebeccapurple;
+  background-color: orange;
   color: #fff;
   border: none;
 `;

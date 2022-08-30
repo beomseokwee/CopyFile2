@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 function GosuNav() {
     const reviewNum = 4;
-    const navList = ['고수 정보', '사진/동영상', `리뷰 ${reviewNum}`, '질문답변'];
+    const navList = ['전문가 정보'];
 
     return (
         <GosuStickyNav>

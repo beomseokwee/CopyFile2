@@ -51,8 +51,11 @@ body {
 }
 
 .chat-window {
-    width: 300px;
-    height: 420px;
+    width: 600px;
+    height: 520px;
+    display: inline-block;
+    margin-top : 6%;
+    margin-left : 30%;
 }
 
 .chat-window p {
@@ -61,30 +64,43 @@ body {
 .chat-window .chat-header {
     height: 45px;
     border-radius: 6px;
-    background: #263238;
+    background: #F2AA4C;
     position: relative;
     cursor: pointer;
 }
 .chat-window .chat-header p {
     display: block;
-    padding: 0 1em 0 2em;
+    padding: 0 1em 0 0.5em;
     color: #fff;
-    font-weight: 700;
+    font-family: "CuteFont-Regular";
+    font-size : 30px;
+    font-weight: 300;
     line-height: 45px;
 }
 
 .chat-window .chat-body {
-    height: calc(450px - (45px + 70px));
-    border: 1px solid #263238;
+    height: calc(550px - (45px + 70px));
+    border: 1px solid #F2AA4C;
     background: #fff;
-
     position: relative;
+
 }
 .chat-window .chat-body .message-container {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+.message-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.message-container::-webkit-scrollbar {
+    display: none;
 }
 
 .chat-window .chat-body .message-container::-webkit-scrollbar {
@@ -153,7 +169,7 @@ body {
 
 .chat-window .chat-footer {
     height: 40px;
-    border: 1px solid #263238;
+    border: 1px solid #F2AA4C;
     border-top: none;
     display: flex;
 }
@@ -164,7 +180,7 @@ body {
     border: 0;
     padding: 0 0.7em;
     font-size: 1em;
-    border-right: 1px dotted #607d8b;
+    border-right: 1px dotted #F2AA4C;
 
     outline: none;
     font-family: "Open Sans", sans-serif;

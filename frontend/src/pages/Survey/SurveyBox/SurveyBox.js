@@ -131,7 +131,7 @@ function SurveyBox({ pageInfo,id }) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: getCookie('is_login'),
+                Authorization: getCookie('access_token'),
             },
             body: JSON.stringify({
                 email:localStorage.getItem('email'),
@@ -146,8 +146,8 @@ function SurveyBox({ pageInfo,id }) {
             .then(res => res.json())
             // .then(goToFindGosu());
             .then((res)=>{
-                console.log(a,id)
-                window.location.href='/'
+                console.log(a,id);
+                document.location.href='/';
             })
     };
 

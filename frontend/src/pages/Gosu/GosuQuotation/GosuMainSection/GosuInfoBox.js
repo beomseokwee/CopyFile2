@@ -27,7 +27,7 @@ function GosuInfoBox({ gosuDetails, handleMoreBtn, closed }) {
         },
         {
             icon: <AiOutlineTrophy />,
-            text: `${hired}회 고용됨`,
+            text: `10회 고용됨`,
         },
         {
             icon: <GrLocation />,
@@ -63,43 +63,32 @@ function GosuInfoBox({ gosuDetails, handleMoreBtn, closed }) {
                 <AddedInfo>
                     <li>
                         <BiBriefcaseAlt2 />
-                        <span>경력 {career}년</span>
+                        <span>경력 {gosuDetails.gosuCareer}년</span>
                     </li>
                     <li>
                         <GrDocumentText />
-                        <span>사업자등록증 {business ? '등록완료' : '미등록'}</span>
+                        <span>사업자등록증 등록완료</span>
                     </li>
                     <li>
                         <AiOutlineSafetyCertificate />
-                        <span>자격증 {certification ? '등록완료' : '미등록'}</span>
+                        <span>자격증 등록완료 </span>
                     </li>
                 </AddedInfo>
             </GosuAddedInfo>
-            <GosuOffer>
-                <h2>제공 서비스</h2>
-                <ServiceBox>
-                    <ServiceList>
-                        <li>사무실/상업공간 청소 업체</li>
-                        <li>이사/입주 청소 업체</li>
-                        <li>준공 청소</li>
-                        <li>바닥 청소 (왁스 코팅)</li>
-                    </ServiceList>
-                </ServiceBox>
-            </GosuOffer>
             <GosuService>
                 <h2>서비스 상세설명</h2>
                 <ServiceDetailBox>
                     {/*<DetailText>*/}
                     {/*    <p className={closed.desc ? '' : 'close'}>{description}</p>*/}
                     {/*</DetailText>*/}
-                    <ViewMoreBox>
-                        <ViewMoreBtn
-                            name="desc"
-                            onClick={e => handleMoreBtn(e.target.name)}
-                        >
-                            {closed.desc ? '접기' : '더보기'}
-                        </ViewMoreBtn>
-                    </ViewMoreBox>
+                    {/*<ViewMoreBox>*/}
+                    {/*    <ViewMoreBtn*/}
+                    {/*        name="desc"*/}
+                    {/*        onClick={e => handleMoreBtn(e.target.name)}*/}
+                    {/*    >*/}
+                    {/*        {closed.desc ? '접기' : '더보기'}*/}
+                    {/*    </ViewMoreBtn>*/}
+                    {/*</ViewMoreBox>*/}
                 </ServiceDetailBox>
             </GosuService>
         </GosuInfoContainer>

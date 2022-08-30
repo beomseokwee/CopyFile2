@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 export const NavContainer = styled.nav`
   ${({ theme }) => theme.flex('center', 'center', null)};
-  border-bottom: 1px solid #ccc;
   font-family: 'Noto Sans KR', sans-serif;
+  margin-bottom: 20px;
 `;
 
 export const Navbar = styled.div`
@@ -13,6 +13,7 @@ export const Navbar = styled.div`
   width: 100%;
   max-width: 1200px;
   padding: 0px 0;
+  
 `;
 
 export const NavLeft = styled.div`
@@ -43,13 +44,16 @@ export const MenuBox = styled.ul`
 
 export const MenuList = styled(Link)`
   margin: 0 10px;
-  color: #323232;
-  font-size: 17px;
+  color: #F2AA4C;
+  font-size: 28px;
   text-decoration: none;
   cursor: pointer;
+  font-family: GamjaFlower-Regular;
+  
   &:hover {
-    color: rebeccapurple;
+    color: #323232;
     font-weight: bold;
+    font-family: GamjaFlower-Regular;
   }
 `;
 
@@ -69,23 +73,25 @@ export const Button1 = styled.button`
 
 export const Login = styled(Button1)`
 margin: 0 10px;
-  color: #323232;
-  font-size: 17px;
+color: #F2AA4C;
+  font-size: 28px;
   text-decoration: none;
   cursor: pointer;
+  font-family: GamjaFlower-Regular;
   &:hover {
-    color: rebeccapurple;
+    color: #323232;
     font-weight: bold;
   }`;
 
 export const Signup = styled(Button1)`
 margin: 0 10px;
-  color: #323232;
-  font-size: 17px;
+  color: #F2AA4C;
+  font-size: 28px;
   text-decoration: none;
   cursor: pointer;
+  font-family: GamjaFlower-Regular;
   &:hover {
-    color: rebeccapurple;
+    color: #323232;
     font-weight: bold;
   }
   margin: 0 30px;
@@ -111,7 +117,9 @@ export const User = styled.div`
   }
 `;
 export const UserName = styled.p`
-  color: #323232;
-  font-size: 17px;
+  color: #F2AA4C;
+  font-size: 25px;
   cursor: pointer;
+  font-family: GamjaFlower-Regular;
+  text-shadow: -0.5px 0px grey, 0px 0.5px grey, 0.5px 0px grey, 0px -0.5px grey;
 `;

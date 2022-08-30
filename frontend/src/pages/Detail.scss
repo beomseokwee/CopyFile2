@@ -51,12 +51,12 @@
           height: 54px;
           padding: 11px 16px;
           border-radius: 4px 0 0 4px;
-          color: #737373;
+          color: white;
 
           &:focus {
-            border-color: #48ffe8;
+            border-color: 	white;
             outline: 1px;
-            box-shadow: 0 0 0 3px rgba(0, 199, 174, 0.5);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0.3, 0.3);
           }
         }
 
@@ -67,15 +67,16 @@
           border-radius: 0 4px 4px 0;
           color: var(--white);
           font-size: 16px;
+          color: antiquewhite;
           font-weight: 550;
-          background: #ff7f50;
+          background: dimgray;
           &::before {
             content: '';
             color: #fff;
           }
 
           &:hover {
-            background-color: #d2691e;
+            background-color: gray;
           }
 
         }

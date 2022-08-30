@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Text } from "../elements";
 import axios from 'axios';
+import '../App.scss';
 import {
     Avatar,
     Button,
@@ -17,6 +19,7 @@ import {
 } from '@mui/material/';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from 'styled-components';
+
 
 // mui의 css 우선순위가 높기때문에 important를 설정 - 실무하다 보면 종종 발생 우선순위 문제
 const FormHelperTexts = styled(FormHelperText)`
@@ -50,11 +53,11 @@ const SignUp = () => {
 
         // post
         await axios
-            .post('/user/save', postData)
+            .post('/user/signup', postData)
             .then(function (response) {
                 console.log(response, '성공');
                 // history.push('/login');
-                document.location.href='/login';
+                document.location.href='/signin';
             })
             .catch(function (err) {
                 console.log(err);
@@ -120,7 +123,10 @@ const SignUp = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />
+                    {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} />*/}
+                    <Text color='#DB631F' size="21px" >
+                        SOME BODY HELP ME
+                    </Text>
                     <Typography component="h1" variant="h5">
                         회원가입
                     </Typography>
@@ -129,6 +135,7 @@ const SignUp = () => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         autoFocus
                                         fullWidth
@@ -142,6 +149,7 @@ const SignUp = () => {
                                 <FormHelperTexts>{emailError}</FormHelperTexts>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         fullWidth
                                         type="password"
@@ -154,6 +162,7 @@ const SignUp = () => {
                                 <FormHelperTexts>{passwordState}</FormHelperTexts>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         fullWidth
                                         type="password"
@@ -166,6 +175,7 @@ const SignUp = () => {
                                 <FormHelperTexts>{passwordError}</FormHelperTexts>
                                 <Grid item xs={12}>
                                     <TextField
+                                        color = 'warning'
                                         required
                                         fullWidth
                                         id="name"
@@ -188,6 +198,9 @@ const SignUp = () => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 size="large"
+                                style={{backgroundColor:'#F2AA4C'}}
+                                onKeyPress={(e)=>{
+                                    e.key ==="Enter" && handleSubmit()}}
                             >
                                 회원가입
                             </Button>

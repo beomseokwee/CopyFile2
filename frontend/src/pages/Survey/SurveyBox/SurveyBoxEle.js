@@ -7,7 +7,7 @@ export const SurveyFormBox = styled.div`
   padding: 2.5rem;
   transform: translateY(-12.25rem);
   background-color: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   z-index: 2;
 `;
@@ -47,7 +47,7 @@ export const PrevBtn = styled(Btns)`
 `;
 
 export const NextBtn = styled(Btns)`
-  background-color: rebeccapurple;
+  background-color: orange;
   color: #fff;
   border: none;
 `;

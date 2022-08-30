@@ -23,7 +23,7 @@ const CategoryWrap = styled.div`
   justify-content: center;
   padding: 10px;
   list-style: none;
-  margin-top: 0px;
+  margin-top: 10px;
   z-index: 1;
 `;
 
@@ -46,7 +46,8 @@ const CategoryImg = styled.img`
 const CategoryText = styled.p`
   margin-top: 20px;
   text-align: center;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bolder;
   color: white;
+  font-family: GamjaFlower-Regular;
 `;

@@ -1,23 +1,22 @@
 
 import styled from 'styled-components';
 
-import { RatingStars } from '../../../../RatingStars';
+
 
 function GosuOverview({ gosuDetails }) {
-    const { profile_image, name, category, average_rating, review_counts } =
+    const { gosuName, category ,gosuGender ,gosuCareer,gosuRegion,gosuAge} =
         gosuDetails;
 
     return (
         <Overview>
-            <GosuProfileImg alt="고수이미지" src={profile_image} />
+            <GosuProfileImg alt="고수이미지" src={'/images/winter7.jpg'} />
             <GosuHeadBox>
-                <GosuTitle>{name}</GosuTitle>
-                <GosuCategory>{category}</GosuCategory>
-                <GosuGradeBox>
-                    {RatingStars(average_rating)}
-                    <GosuGrade>{average_rating}</GosuGrade>
-                    <GosuReviewCount>({review_counts}개의 리뷰)</GosuReviewCount>
-                </GosuGradeBox>
+                <GosuTitle>{gosuName}</GosuTitle>
+                <GosuCategory>나이 : {gosuAge}</GosuCategory>
+                <GosuCategory>성별 : {gosuGender}</GosuCategory>
+                <GosuCategory>카테고리 :{category}</GosuCategory>
+                <GosuCategory>사는지역 : {gosuRegion}</GosuCategory>
+                <GosuCategory>경력 : {gosuCareer}년</GosuCategory>
             </GosuHeadBox>
         </Overview>
     );
@@ -31,8 +30,8 @@ const Overview = styled.div`
 `;
 
 const GosuProfileImg = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 180px;
   object-fit: cover;
   border-radius: 10px;
 `;
@@ -48,7 +47,7 @@ const GosuTitle = styled.h2`
 `;
 
 const GosuCategory = styled.h3`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #737373;
   font-size: 17px;
   font-weight: 400;

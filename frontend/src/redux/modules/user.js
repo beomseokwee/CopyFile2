@@ -14,7 +14,7 @@ const LOG_OUT = "LOG_OUT";
 //initialState
 const initialState = {
     user: null,
-    is_login: false,
+    access_token: false,
 };
 
 
@@ -26,11 +26,10 @@ const getUser = createAction(GET_USER, (user) => ({ user }));
 
 //API통신을 통해 서버에 id,pwd를 제공하고 유저 정보와 토큰을 받아 저장
 const loginDB = (id, password) => {
-
     return function (dispatch, getState, { history }) {
         axios({
             method: "post",
-            url: "/user/login",
+            url: "/user/signin",
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8'
             },
@@ -43,12 +42,12 @@ const loginDB = (id, password) => {
                 console.log(res)
                 console.log(id);
                 console.log(res)
-                dispatch(
-                    setUser({
-                        email: id,
-                        nickname: id,
-                    })
-                );
+                // dispatch(
+                //     setUser({
+                //         email: id,
+                //         nickname: id,
+                //     })
+                // );
                 console.log(res.data.token)
                 const access_token = res.headers.access_token;
                 const refresh_token = res.headers.refresh_token;
@@ -63,7 +62,7 @@ const loginDB = (id, password) => {
                 //로컬에 사용자 정보 저장  email,nickname,role
                 console.log(axios.defaults.headers.common)
                 //쿠키에 토큰 저장
-                setCookie("is_login", res.headers.access_token);
+                setCookie("access_token", res.headers.access_token);
                 setCookie("refresh_token", res.headers.refresh_token);
                 document.location.href = "/";
                 // history.push("/");
@@ -79,26 +78,26 @@ const loginDB = (id, password) => {
 //서버에서 토큰을 받아 유효성 검증 후 유효하다면 유저 정보를 주어 자동 로그인
 const loginCheckDB = () => {
     return function (dispatch, getState, { history }) {
-        const token = getCookie("is_login");
+        const token = getCookie("access_token");
         axios({
             method: "get",
             url: "/user/check",
             headers: {
+
                 Authorization: `Bearer ${token}`,
             },
         })
             .then((res) => {
                 console.log(res);
-                console.log(res.headers.email)
-                console.log(res.headers.role)
-                localStorage.setItem('email',res.headers.email)
-                localStorage.setItem('nickname',res.headers.name)
-                localStorage.setItem('role',res.headers.role)
+                console.log()
+                localStorage.setItem('email',res.data.email)
+                localStorage.setItem('nickname',res.data.name)
+                localStorage.setItem('role',res.data.role)
                 dispatch(
                     setUser({
-                        email: res.headers.email,
-                        nickname: res.headers.name,
-                        role : res.headers.role,
+                        email: res.data.email,
+                        nickname: res.data.name,
+                        role : res.data.role,
                     })
                 );
             })
@@ -113,7 +112,7 @@ const loginCheckDB = () => {
                             Authorization: `Bearer ${token}`,
                         },
                     }).then((res)=>{
-                        setCookie("is_login", res.headers.access_token);
+                        setCookie("access_token", res.headers.access_token);
                         setCookie("refresh_token", res.headers.refresh_token);
                         dispatch(userActions.loginCheckDB());
                     }).catch((err) => {
@@ -121,8 +120,6 @@ const loginCheckDB = () => {
                         dispatch(userActions.logOut());
                         history.replace("/");
                     })
-
-
                 }
                 else {
                     console.log('만료가 아닌, 조작 or 알수없는 이유')
@@ -154,14 +151,14 @@ export default handleActions(
         [SET_USER]: (state, action) =>
             produce(state, (draft) => {
                 draft.user = action.payload.user;
-                draft.is_login = true;
+                draft.access_token = true;
             }),
         [LOG_OUT]: (state, action) =>
             produce(state, (draft) => {
-                deleteCookie("is_login");
+                deleteCookie("access_token");
                 deleteCookie("refresh_token");
                 draft.user = null;
-                draft.is_login = false;
+                draft.access_token = false;
             }),
         [GET_USER]: (state, action) => produce(state, (draft) => {}),
     },

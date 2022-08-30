@@ -13,6 +13,11 @@ import {
     questionTwo,
     questionThree,
     questionFour,
+    questionFive,
+    questionSix,
+    questionSeven,
+    questionEight,
+    questionNine,
 } from '../GosuSurveyData';
 
 // STYLES
@@ -25,16 +30,15 @@ import {getCookie} from "../../../shared/Cookie";
 function GosuSurveyBox({info}) {
     const [loading, setLoading] = useState(false);
     const [selectedTown, setSelectedTown] = useState('');
-    const email = localStorage.getItem('email')
-    const name = localStorage.getItem('name')
-    const password = localStorage.getItem('password')
-    console.log(info)
+    // const email = localStorage.getItem('email')
+    // const name = localStorage.getItem('name')
+    // const password = localStorage.getItem('password')
     const [radioValue, setRadioValue] = useState({
-
         gender: '',
         age: '',
         career: '',
         service: '',
+        category:'',
     });
 
     const currentRadioQuestions = {
@@ -42,6 +46,7 @@ function GosuSurveyBox({info}) {
         1: 'age',
         2: 'career',
         3: 'service',
+        4: 'category',
     };
 
     let [currentQ, setCurrentQ] = useState(0);
@@ -59,24 +64,24 @@ function GosuSurveyBox({info}) {
         }, 1000);
     };
 
-
     const clickNextBtn = () => {
+
         if (
             (currentQ === 0 && radioValue.gender !== '') ||
             (currentQ === 1 && radioValue.age !== '') ||
             (currentQ === 2 && radioValue.career !== '')||
-            (currentQ === 3 && radioValue.service !== '')
+            (currentQ === 3 && radioValue.service !== '')||
+            (currentQ === 4 && radioValue.category !== '')
         ) {
             plusCurrentQ();
-        } else if (currentQ === 4 && selectedTown !== '') {
+        } else if (currentQ === 5 && selectedTown !== '') {
             setLoading(true);
             loadingTime();
         }
-
     };
 
     const plusCurrentQ = () => {
-        if (currentQ < 4) {
+        if (currentQ < 5) {
             setCurrentQ(currentQ + 1);
         }
     };
@@ -131,8 +136,22 @@ function GosuSurveyBox({info}) {
                     getRadioValue={getRadioValue}
                 />
             ),
-            4: <Select SelectData={SelectData} getSelectValue={getSelectValue} />,
+
+            4: (<>
+                {radioValue &&
+                <Radio
+                    radioValue={radioValue}
+                    question={radioValue.service == '알바'? questionFive: radioValue.service =='레슨'? questionSix :radioValue.service =='이벤트'?
+                questionSeven:radioValue.service =='건강&미용'?questionEight:questionNine}
+                    getRadioValue={getRadioValue}
+                />
+    }
+                </>
+            ),
+
+            5: <Select SelectData={SelectData} getSelectValue={getSelectValue} />,
         };
+
 
         return (
             <S.SurveyLine>
@@ -142,11 +161,12 @@ function GosuSurveyBox({info}) {
     };
 
     const submitForm = () => {
+        console.log(radioValue.age)
+        console.log(radioValue.category)
         const age = radioValue.age.slice(0, 2);
         const [career] = radioValue.career.split('~');
         console.log(info)
-        fetch(`/gosu/signup`, {
-
+        fetch(`/user/gosu/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -157,21 +177,20 @@ function GosuSurveyBox({info}) {
                 password : info.password,
                 name : info.name,
                 age: age,
-                service: radioValue.service,
+		        category : radioValue.category,
+                // service: radioValue.service,
                 career: career,
                 gender: radioValue.gender,
-                region: selectedTown,
+                address: selectedTown,
             }),
         })
             .then(res => res.json())
             .then((res)=>{console.log(res);
-
-            // window.location.href='/GosuMain'
+            window.location.href='/'
             })
             // 프로필로 변경
             // .then(goToFindGosu());
     };
-
     return (
         <S.SurveyFormBox>
             <S.SurveyForm>

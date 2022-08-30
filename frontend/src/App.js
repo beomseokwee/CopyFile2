@@ -24,9 +24,11 @@ import ChatApp from "./pages/Chat/client/ChatApp";
 import ChatList from "./pages/Chat/client/ChatList";
 import GosuInfo from "./pages/Gosu/GosuQuotation/GosuInfo";
 import GosuInfoDetail from "./pages/Gosu/GosuQuotationDetail/GosuInfo";
+import Event from "./Event";
+import LawSurvey from "./pages/law/LawSurvey";
 function App(props) {
     const dispatch = useDispatch();
-    const token = getCookie("is_login")
+    const token = getCookie("access_token")
     const history =useHistory();
 
     useEffect(()=>{
@@ -41,7 +43,7 @@ function App(props) {
         <React.Fragment>
         <Header />
         <ConnectedRouter history={history}>
-            <Route path="/login" exact component={Login}/>
+            <Route path="/signin" exact component={Login}/>
             <Route path="/signup" exact component={SignUp}/>
 
             <Route path="/" exact component={Main}/>
@@ -51,8 +53,10 @@ function App(props) {
             <Route path="/ChatList" exact component={ChatList}/>
             <Route path="/GosuMain" exact component={GosuMain}/>
             <Route path="/GosuDetail" exact component={GosuDetail}/>
+            <Route path="/user/subscribe" exact component={Event}/>
             <Route path="/GosuInfoDetail/:id" exact component={GosuInfoDetail}/>
             <Route exact path="/GosuInfo/:id" component={GosuInfo} />
+            <Route exact path="/lawsurvey" component={LawSurvey} />
             <Route path="/Gosu/SignUp" exact component={GosuSignUp}/>
             <Route path="/category/" exact component={DetailCategory}/>
             <Route path="/category/:id" exact  component={DetailCategory}/>

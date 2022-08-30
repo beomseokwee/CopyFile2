@@ -30,7 +30,7 @@ function Survey(props) {
         const { id } = params;
         console.log(id)
         let a = localStorage.getItem('id')
-        fetch(`/category/${a}/Survey/${id}`, {
+        fetch(`/category/${a}/survey/${id}`, {
             method:'GET',
             headers: {
                 Authorization: getCookie('is_login'),

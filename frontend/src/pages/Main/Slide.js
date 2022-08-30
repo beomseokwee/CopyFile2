@@ -38,15 +38,17 @@ const settings = {
 const SlideTitle = styled.h2`
   padding: 60px 0px 50px 0px;
   text-align: center;
-  font-size: 30px;
+  font-size: 60px;
   font-weight: bolder;
+  color : #F2AA4C;
+  font-family:'CuteFont-Regular';
 `;
 const Container = styled.div`
   margin-right: 25px;
 `;
 const StyledSlider = styled(Slider)`
   .slick-list {
-    width: 1600px;
+    width: 1450px;
     margin: 0 auto;
   }
   .slick-dots {
@@ -59,9 +61,10 @@ const CardBox = styled.div`
   outline: none;
 `;
 const CardImg = styled.img`
-  width: 380px;
+  width: 320px;
   height: 190px;
   border-radius: 10px;
+  margin : 0 auto;
   &:hover {
     opacity: 0.3;
     background-color: rgba(0, 0, 0, 0.5);
@@ -69,7 +72,9 @@ const CardImg = styled.img`
 `;
 const CardText = styled.p`
   padding: 20px;
-  font-size: 20px;
+  font-size: 35px;
   font-weight: bolder;
   text-align: center;
+  color : #F2AA4C;
+  font-family:'CuteFont-Regular';
 `;

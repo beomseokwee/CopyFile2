@@ -20,7 +20,7 @@ function DetailCategory(props) {
     const params = useParams();
     const history = useHistory();
     const [serviceId2, setServiceId2] = useState();
-    const token = getCookie('is_login');
+    const token = getCookie('access_token');
 
     const [selectedCategory, setSelectedCategory] = useState(1);
     useEffect(() => {
@@ -31,7 +31,7 @@ function DetailCategory(props) {
         fetch(`/category/${id}`, {
             method:'GET',
             headers: {
-                Authorization: getCookie('is_login'),
+                Authorization: getCookie('access_token'),
             },
         })
             .then(res => res.json())
@@ -41,8 +41,6 @@ function DetailCategory(props) {
                 localStorage.setItem('id',id);
                 setSliders2(res);
                 console.log(sliders2);
-
-
             });
     };
 
@@ -161,36 +159,40 @@ export default DetailCategory;
         
 
 const Header1 = styled.div`
-  display: flex;
-  flex-direction: column;
+display: flex;
+flex-direction: column;
+height: 500px;
+justify-content: center;
+margin : 0 auto;
+width: 1300px;
+background-image: url('/images/sea1.png');
+background-position: center;
+background-repeat: no-repeat;
+animation: gradient 9s ease-in-out infinite;
+animation: slidein 30s;
+animation-fill-mode: forwards;
+animation-iteration-count: infinite;
+animation-direction: alternate;
+z-index: 1;
+&::before {
+  position: absolute;
+  width: 1300px;
   height: 500px;
-  justify-content: center;
-  background-image: url('../images/main.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  animation: gradient 9s ease-in-out infinite;
-  animation: slidein 50s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  z-index: 1;
-  &::before {
-    position: absolute;
-    width: 100%;
-    height: 500px;
-    background-color: rgba(0.5, 0.5, 0.5, 0.5);
-    content: '';
+  background-color: rgba(0.3, 0.3, 0.3, 0.3);
+  // background-color: rgba(0, 0, 0, 0);
+  content: '';
+  
+}
+@keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 2000px;
   }
-  @keyframes slidein {
-    from {
-      background-position: top;
-      background-size: 2000px;
-    }
-    to {
-      background-position: -100px -650px;
-      background-size: 2200px;
-    }
+  to {
+    background-position: -100px -650px;
+    background-size: 2200px;
   }
+}
 `;
 
 const MainTop = styled.div`
@@ -199,7 +201,6 @@ const MainTop = styled.div`
   justify-content: center;
   margin-top: 180px;
   margin-bottom:50px;
-  
   align-items: center;
 `;
 
@@ -212,7 +213,8 @@ const MainTopTitle = styled.img`
 const MainTopText = styled.p`
   margin-top: 15px;
   color: white;
-  font-size: 40px;
+  font-size: 60px;
+  font-family:'CuteFont-Regular';
   z-index: 1;
   
 `;

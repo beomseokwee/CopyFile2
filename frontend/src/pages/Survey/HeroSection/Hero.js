@@ -25,7 +25,12 @@ function Hero(props) {
     return (
         <S.HeroSection mainImg={props.pageInfo.image}>
             <S.HeroTextBox>
-                <S.MainTitle>{props.pageInfo.name}</S.MainTitle>
+                <S.TotalBox>
+                    <S.Total>
+                        <S.MainTitle >{props.pageInfo.name}</S.MainTitle>
+                    </S.Total>
+                </S.TotalBox>
+
                 <S.StarsBox>
                     {rating && <S.Stars>{RatingStars(rating)}</S.Stars>}
                     <S.Rating>{props.pageInfo.count1}점</S.Rating>
@@ -33,7 +38,7 @@ function Hero(props) {
                 <S.TotalBox>
                     <S.Total>
                         <h5>{props.pageInfo.count2}</h5>
-                        <p>활동 고수</p>
+                        <p>활동 전문가</p>
                     </S.Total>
                     <S.Total>
                         <h5>{props.pageInfo.count3}</h5>

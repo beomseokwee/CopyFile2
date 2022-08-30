@@ -6,6 +6,9 @@ import {useHistory} from "react-router-dom";
 import {getCookie} from "../../shared/Cookie";
 import Slide from "./Slide";
 import DetailCategory from "../DetailCategory";
+import '../Detail.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/fontawesome-free-solid';
 
 const Main = () => {
 
@@ -31,26 +34,26 @@ const Main = () => {
     // };
 
     const [sliders, setSliders] = useState([{
-        image:'../images/winter5.jpg',
-        name:'winter',
+        image:'../images/design.jpg',
+        name:'디자인/개발',
         id:'0',
     },{
-        image:'../images/4.jpg',
+        image:'../images/arbeit.jpg',
         name:'알바',
         id:'1'},{
-        image:'../images/winter6.jpg',
-        name:'winter3',
+        image:'../images/lesson.jpg',
+        name:'레슨',
         id:'2'},{
-        image:'../images/winter7.jpg',
-        name:'winter4',
+        image:'../images/event.jpg',
+        name:'이벤트',
         id:'3'},{
-        image:'../images/winter8.jpg',
-        name:'winter5',
+        image:'../images/health.jpg',
+        name:'건강/미용',
         id:'4'}]);
     const [selectedCategory, setSelectedCategory] = useState(1);
     const [serviceId, setServiceId] = useState();
     const history = useHistory();
-    const token = getCookie('is_login');
+    const token = getCookie('access_token');
     const GoToCategory = serviceId => {
         if (token) {
             setServiceId(serviceId);
@@ -59,13 +62,41 @@ const Main = () => {
             history.push(`/category/${serviceId}`)
         }
     };
+    const goToLawSurvey = () => {
+        window.location.href = `/lawsurvey/`;
+    };
     return (
         <>
             <Header1>
                 <MainTop>
-                    {/*<MainTopTitle src="../images/4.jpg" />*/}
-                    <MainTopText>생활의 고수들과 새로운 인연을 맺어보세요!</MainTopText>
+                    <MainTopTitle src="../images/Mainfont1.png" />
+                {/*    <MainTopText>생활의 전문가들과 새로운 인연을 맺어보세요!</MainTopText>*/}
                 </MainTop>
+                <main  style={{zIndex:5}} className='DetailCategory'>
+                    <header
+                        className='main-header'
+                    >
+                        <div className='main-header-contents'>
+                            <div className='main-form-input'>
+                                <input
+                                    type='text'
+                                    placeholder='당신의 문제에 대한 카테고리를 못 찾으셨나요??'
+                                    autoComplete='off'
+                                    className='input-main'
+                                />
+                                <button type='button' className='btn-main'
+                                onClick={()=>{
+                                    {
+                                        goToLawSurvey()
+                                    }
+                                }}>
+                                    {/*<FontAwesomeIcon icon={faSearch} /> 상황 작성*/}
+                                    상황 작성
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+            </main>
                 {selectedCategory.length !== 0 && (
                 <Category
                     GoToCategory={GoToCategory}
@@ -78,6 +109,7 @@ const Main = () => {
                 <Slide sliders={sliders} GoToCategory={GoToCategory} />
             // <DetailCategory sliders={sliders} GoToServey={GoToServey} />
             )}
+            
         </>
     );
 }
@@ -89,8 +121,9 @@ const Header1 = styled.div`
   flex-direction: column;
   height: 500px;
   justify-content: center;
- 
-  background-image: url('../images/main.png');
+  margin : 0 auto;
+  width: 1300px;
+  background-image: url('/images/law1.jpg');
   background-position: center;
   background-repeat: no-repeat;
   animation: gradient 9s ease-in-out infinite;
@@ -101,9 +134,10 @@ const Header1 = styled.div`
   z-index: 1;
   &::before {
     position: absolute;
-    width: 100%;
+    width: 1300px;
     height: 500px;
-    background-color: rgba(0.5, 0.5, 0.5, 0.5);
+    background-color: rgba(0.3, 0.3, 0.3, 0.3);
+    // background-color: rgba(0, 0, 0, 0);
     content: '';
   }
   @keyframes slidein {
@@ -124,17 +158,19 @@ const MainTop = styled.div`
   justify-content: center;
   margin-top: 130px;
   align-items: center;
+  
+  
 `;
 
 const MainTopTitle = styled.img`
   display: flex;
-  width: 250px;
-  padding: 10px;
-  z-index: 1;
+  width: 150px;
+  height: 150px;
+  z-index: 0;
 `;
 const MainTopText = styled.p`
-  margin-top: 15px;
   color: white;
-  font-size: 20px;
+  font-size: 40px;
   z-index: 1;
+  font-family:'CuteFont-Regular';
 `;

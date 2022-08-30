@@ -1,82 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-
+import ChatApp from '../../Chat/client/ChatApp'
 import GosuMainSection from './GosuMainSection/GosuMainSection';
 import {getCookie} from "../../../shared/Cookie";
 // import GosuAsideBar from './GosuAsideBar/GosuAsideBar';
 
+
 function GosuInfo() {
-    const submitForm = () => {
-        fetch(`https://jsonplaceholder.typicode.com/posts`, {
+    const params = useParams();
+    const {id} = params;
+    useEffect(() => {
+        fetch(`/matchedgosulist/${id}`, {
             method: 'POST',
             headers: {
-                Authorization: getCookie('is_login'),
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem('access_token'),
             },
-            body: JSON.stringify({
-                // user_id: 12,
-                // age: Number(age),
-                // service: radioValue.service,
-                // career: Number(career),
-                // gender: radioValue.gender,
-                // region: selectedTown,
-                // service_id: 2,
-                // email:email,
-            }),
+            body: JSON.stringify(
+                {email: localStorage.getItem('email')}
+            )
         })
             .then(res => res.json())
-            .then(()=>{console.log('성공');
-                window.location.href='/ChatApp'})
-        // 프로필로 변경
-        // .then(goToFindGosu());
-    };
+            .then(res => {
+                setGosuDetails(res)
+                console.log(res);
+                localStorage.setItem('email2',res.gosuEmail);
+
+            });
+    }, []);
     // var [introduction,setIntroduction]=useState('안녕하세요 윈터 입니다.')
     const [gosuDetails, setGosuDetails] = useState({
-        review_counts:4,
-    uploaded_image:'/images/winter8.jpg',
-        profile_image:'/images/winter9.png',
-        name:'winter',
-        main_service:'서빙',
-        average_rating:5,
-        introduction:'안녕하세요 에스파 윈터 입니다!',
-        quotationPrice:'100,000원',
-        career:'10',
-        region:'서울',
-        hired:'30',
-        certification:'ok',
-        business:'ok',
+        // review_counts:4,
+        // uploaded_image:'/images/winter8.jpg',
+        // profile_image:'/images/winter9.png',
+        // name:'winter',
+        // main_service:'서빙',
+        // average_rating:5,
+        // introduction:'안녕하세요 에스파 윈터 입니다!',
+        // quotationPrice:'100,000원',
+        // career:'10',
+        // region:'서울',
+        // hired:'30',
+        // certification:'ok',
+        // business:'ok',
+        // category:'서빙', // 고수가 가입햇을때 저장된 서비스
+        // gosuName:'윈터',
+        // gosuAge:'28',
+        // gosuGender:'남',
+        // gosuCategory:'편의점 알바',
+        // gosuRegion:'서울',
+        // gosuCareer:'20년',
     });
-    const [gosuInfo, setGosuInfo] = useState([{name:'윈터',
-        rating:4,
-    created_at:2022,
-    content:'???'},{name:'윈터',
-        rating:4,
-        created_at:2022,
-        content:'???'},{name:'윈터',
-        rating:4,
-        created_at:2022,
-        content:'???'}]);
-    const { pathname } = useLocation();
-    const params = useParams();
-
-    // useEffect(() => {
-    //     const { id } = params;
-    //
-    //     fetch(`/masters/${id}`)
-    //         .then(res => res.json())
-    //         .then(({ res }) => setGosuDetails(res[0]));
-    // }, []);
-    //
-    // useEffect(() => {
-    //     const email = localStorage.getItem('email')
-    //     fetch('/')
-    //         .then(res => res.json())
-    //         .then((res) => {setGosuInfo(res);
-    //         console.log(GosuInfo)})
-    // }, []);
-
-
-
     console.log(`gosuDetails`, gosuDetails);
     return (
         <GosuDetailContainer>
@@ -84,7 +59,6 @@ function GosuInfo() {
                 <>
                     <GosuMainSection
                         gosuDetails={gosuDetails}
-                        gosuInfo={gosuInfo}
                     />
                     {/*<GosuAsideBar*/}
                     {/*    gosuDetails={gosuDetails}*/}
@@ -92,10 +66,31 @@ function GosuInfo() {
                     {/*/>*/}
                 </>
             )}
-            <ReviewMoreBtn onClick={()=>{
-                window.location.href='/ChatApp';
-                submitForm();
+            <ReviewMoreBtn  onClick={()=>{
+                fetch(`/chat/new`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: getCookie('access_token'),
+                    },
+                    body: JSON.stringify({
+                        user:localStorage.getItem('email'),
+                        gosu:localStorage.getItem('email2'),
+                    }),
+                })
+                    .then(res => res.json())
+                    // .then(goToFindGosu());
+                    .then((res)=>{
+                        console.log(res)
+                        console.log('보내기 성공 ')
+                        let number = res.room;
+                        localStorage.setItem('room',number);
+                        window.location.href='/ChatApp'
+                        // setRoom(room)
+                    });
+
             }}>상담하기</ReviewMoreBtn>
+
         </GosuDetailContainer>
     );
 }
@@ -108,6 +103,7 @@ const ReviewMoreBtn = styled.button`
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+  margin-top : 550px;
   &:hover {
     background-color: rebeccapurple;
     color: white;

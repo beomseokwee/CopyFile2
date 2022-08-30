@@ -1,21 +1,21 @@
 export const questionOne = {
     id: 0,
     name: 'gender',
-    Q1: `희망하는 고수의 성별은 무엇입니까?`,
-    answer: ['무관', '남', '여'],
+    Q1: `희망하는 전문가의 성별은 무엇입니까?`,
+    answer: ['무관', '남자', '여자'],
 };
 
 export const questionTwo = {
     id: 1,
     name: 'age',
-    Q1: `희망하는 고수의 나이는 어떻게 되십니까?`,
+    Q1: `희망하는 전문가의 나이는 어떻게 되십니까?`,
     answer: ['무관', '20대', '30대', '40대', '50대'],
 };
 
 export const questionThree = {
     id: 2,
     name: 'career',
-    Q1: `원하시는 고수의 경력은 어떻게 되십니까?`,
+    Q1: `원하시는 전문가의 경력은 어떻게 되십니까?`,
     answer: ['0~4년', '5~9년', '10~14년', '15~20년'],
 };
 

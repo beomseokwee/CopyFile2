@@ -21,11 +21,11 @@ const Header = (props) => {
     const is_login = getCookie("is_login");
     const [isUserMyOpen, setIsUserMyOpen] = useState(false);
     const history = useHistory();
-    if ( //로그인, 회원가입 화면에서는 헤더를 보여주지 않음.
-        window.location.pathname === "/login"
-        // window.location.pathname === "/signup"
-    )
-        return null;
+    // if ( //로그인, 회원가입 화면에서는 헤더를 보여주지 않음.
+    //     window.location.pathname === "/signin"
+    //     // window.location.pathname === "/signup"
+    // )
+    //     return null;
     // if ( //로그인, 회원가입 화면에서는 헤더를 보여주지 않음.
     //     window.location.pathname === "/test"
     //
@@ -63,7 +63,7 @@ const Header = (props) => {
                             <S.HomeLink>
                                 <S.LogoImg onClick={()=>{
                                     document.location.href ='/'
-                                }} src='/images/111111.jpg' alt="logo" />
+                                }} src='/images/logo.png' alt="logo" />
                             </S.HomeLink>
                         </S.LogoBox>
 
@@ -72,7 +72,7 @@ const Header = (props) => {
                     window.location.href='/QuotationList'
                     // history.push('/QuotationList')
                 }} >견적보기</S.MenuList>
-                <S.MenuList>고수찾기</S.MenuList>
+                <S.MenuList>전문가 찾기</S.MenuList>
             </S.MenuBox>
                     </S.NavLeft>
                     <S.UserBox>
@@ -95,7 +95,6 @@ const Header = (props) => {
                                 >
                                     <S.UserName>
                                         {user_info.nickname}님
-
                                     </S.UserName>
                                     <IoIosArrowDown className="userIcons" />
                                 </S.User>
@@ -111,12 +110,12 @@ const Header = (props) => {
                                 <S.UserImgBox>
                                     <S.MenuList onClick={()=>{
                                         window.location.href='/GosuMain'
-                                    }} style={{marginRight:'40px'}}>고수 가입</S.MenuList>
+                                    }} style={{marginRight:'40px'}}>전문가 가입</S.MenuList>
                                 </S.UserImgBox>
                                 <S.Login
                                     style={{ textDecoration: "none", cursor: "pointer" }}
                                     onClick={() => {
-                                        document.location.href = "/login";
+                                        document.location.href = "/signin";
                                     }}
                                 >
                                     로그인

@@ -6,40 +6,28 @@ import {useDispatch} from "react-redux";
 import { useSelector } from "react-redux";
 import {actionCreators as userActions} from "../../../redux/modules/user";
 import {getCookie} from "../../../shared/Cookie";
-const socket = io.connect("http://localhost:3001")
+import {useParams} from "react-router-dom";
+const socket = io.connect("http://13.209.67.178:3001")
 
-
-function ChatApp() {
+function ChatApp({number}) {
     const [room, setRoom] = useState();
+    let {id} = useParams();
+    console.log(id)
     useEffect(()=>{
         getInfo();
     },[])
     const getInfo = () =>{
-        fetch(`https://jsonplaceholder.typicode.com/posts`, {
-            method: 'POST',
-            headers: {
-                Authorization: getCookie('is_login'),
-            },
-            body: JSON.stringify({
-                email:localStorage.getItem('email')
-            }),
-        })
-            .then(res => res.json())
-            // .then(goToFindGosu());
-            .then((res)=>{
-                console.log(typeof(res))
-                console.log('보내기 성공 ')
-                let room = res.id;
-                setRoom(room);
-                console.log(room)
-            });
-
+        if(localStorage.getItem('role')=='ROLE_GOSU'){
+            localStorage.setItem('room',id)
+        }else if(localStorage.getItem('role')=='ROLE_USER' && localStorage.getItem('room') == null){
+            localStorage.setItem('room',id)
+        }  // 만약 로컬스토리지안에 있는 사람의 역할이 고수라면 {id}의 값을 로컬스토리지에 넣어주세요
+        setRoom(localStorage.getItem('room'))
     }
-
-
     // const user_info = useSelector((state)=>state.user.user);
     // var sender = localStorage.getItem('email');
     const role = localStorage.getItem('role');
+    console.log(room);
     var gosu;
     var user;
     if (role =='ROLE_HELPER'){
@@ -67,11 +55,6 @@ function ChatApp() {
                     <Chat socket={socket} user={user} room={room}/>
                 )
             }
-
-
-
-
-
 
         </>
     );

@@ -7,28 +7,34 @@ import { useState,useEffect } from 'react';
 import {useHistory} from "react-router-dom";
 import ScrollToBottom from 'react-scroll-to-bottom';
 import axios from 'axios';
+import { AiOutlineMessage } from "react-icons/ai";
+import { BsHeart } from "react-icons/bs";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
+
 
 export default function ChatList() {
     const [value, setValue] = useState('one');
     const history = useHistory();
+    let [chatList,setChatList] = useState([]);
 
     const email = localStorage.getItem('email'); // 수정해야할듯 ?
     const role = localStorage.getItem('role');
-//
+    const nickname = localStorage.getItem('nickname');
+    //
     useEffect(()=>{
         console.log(email,role)
         axios.get(`/chat/list/${email}/${role}`)
             .then(function(res){
                     console.log(res)
                     let data = res.data
-                    data.splice(0,1)
-                    setChatList((list)=>[...list,data]);
+                    setChatList((list)=>[...list, ...data]);
+
                 }
             )
             .catch((error)=>console.log(error))
     },[])
 
-    let [chatList,setChatList] = useState([])
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -42,21 +48,22 @@ export default function ChatList() {
                 indicatorColor="secondary"
                 aria-label="secondary tabs example"
             >
-                <Tab value="one" label="Item One" />
-                <Tab value="two" label="Item Two" />
-                <Tab value="three" label="Item Three" />
+                <Tab label={< AiOutlineMessage size={24}/>} />
+                <Tab label={<BsHeart size={24}/>} />
+                <Tab label={<AiOutlineExclamationCircle size={24}/>} />
             </Tabs>
             <ScrollToBottom className='message-container'>
                 {
                     chatList.map((a,i)=>{
                         return(
-                            <List onClick={()=>{history.push(`/ChatApp/${a[i].room}`)}}>
+                            <List onClick={()=>{history.push(`/ChatApp/${a.room}`)}}>
                                 {localStorage.getItem('role') == 'ROLE_USER'
                                     ?
-                                    <Name>{a.at(-1).gosu}</Name>
+                                    <Name>{a.gosu}</Name>
                                     :
-                                    <Name>{a.at(-1).user}</Name>}
-                                <Msg>{a.at(-1).msg}</Msg>
+                                    <Name>{a.user}</Name>}
+                                <Msg>{a.info[0].msg}</Msg>
+                                {/* res.data[i].info[i].msg */}
                                 <hr></hr>
                             </List>
                         )

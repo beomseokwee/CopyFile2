@@ -16,6 +16,7 @@ function Select({ SelectData, getSelectValue }) {
                 </S.SelectCity>
                 <S.SelectTown name="시/군/구" onChange={getSelectValue}>
                     <S.OptionTown value="">시/군/구</S.OptionTown>
+
                     {SelectData.town.option.map((el, i) => {
                         return (
                             <S.OptionTownList key={i} value={el}>

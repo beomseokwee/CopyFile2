@@ -1,3 +1,16 @@
+@font-face {
+  font-family: CuteFont-Regular;
+  src : url('./styles/fonts/CuteFont-Regular.woff');
+}
+@font-face {
+  font-family: GamjaFlower-Regular;
+  src : url('./styles/fonts/GamjaFlower-Regular.woff');
+}
+@font-face {
+  font-family: SingleDay-Regular;
+  src : url('./styles/fonts/SingleDay-Regular.woff');
+}
+
 .App {
   text-align: center;
 }
@@ -14,6 +27,11 @@ div{
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused.MuiOutlinedInput-notchedOutline{
+  color: #F2AA4C ;
+}
+
 
 .App-header {
   background-color: #282c34;

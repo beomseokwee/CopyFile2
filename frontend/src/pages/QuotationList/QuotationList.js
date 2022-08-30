@@ -14,7 +14,7 @@ const QuotationList = () => {
                 user_info &&
             <>
             {
-                user_info.role =='ROLE_ADMIN' ?(
+                user_info.role =='ROLE_GOSU' ?(
                 <>
             <Header>
                 <GosuTitle>유저 리스트</GosuTitle>
@@ -26,10 +26,10 @@ const QuotationList = () => {
             <QuotionListData setReviewLength={setReviewLength} />
                 </>):(<>
                 <Header>
-                <GosuTitle>고수 리스트</GosuTitle>
+                <GosuTitle>전문가 리스트</GosuTitle>
                 <GosuTitleSub>지역, 카테고리</GosuTitleSub>
                 <FilterGosuForm>
-                <TotalGosu>{review} 명의 고수</TotalGosu>
+                <TotalGosu>{review} 명의 전문가</TotalGosu>
                 </FilterGosuForm>
                 </Header>
                 <QuotionListData setReviewLength={setReviewLength} />

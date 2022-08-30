@@ -6,12 +6,24 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configStore";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
+
+
 const Login = (props) => {
+
+
     const dispatch = useDispatch();
     const history = useHistory();
     const [id, setId] = useState("");
     const [pwd, setPwd] = useState("");
+    const onClick = ()=>{
+        login();
+    }
 
+    const onKeyPress = (e)=>{
+        if(e.key == 'Enter'){
+            onClick();
+        }
+    }
     const login = () => {
 //입력 값 정합성 체크 후 login API 요청
         if (id === "" || pwd === "") {
@@ -28,17 +40,9 @@ const Login = (props) => {
                 <Line />
             </Grid>
             <Grid width="380px" margin="50px auto">
-                <Text size="21px" login_font bold>
-                    로그인
+                <Text color='#DB631F' size="21px" >
+                    SOME BODY HELP ME
                 </Text>
-                <Ul>
-                    <li>
-                        <a>통합ID 로그인</a>
-                    </li>
-                    <li>
-                        <a>기존ID 로그인</a>
-                    </li>
-                </Ul>
                 <Grid margin="18px 0">
                     <Input
                         _onChange={(e) => {
@@ -49,6 +53,7 @@ const Login = (props) => {
                         placeholder="아이디"
                     />
                     <Input
+                        onKeyPress={onKeyPress}
                         _onChange={(e) => {
                             setPwd(e.target.value);
                         }}
@@ -56,10 +61,8 @@ const Login = (props) => {
                         height="45px"
                         placeholder="비밀번호"
                         type="password"
+
                     />
-                </Grid>
-                <Grid right margin="-10px 0 15px">
-                    <FindID>아이디/비밀번호 찾기 ></FindID>
                 </Grid>
                 <Button
                     _onClick={login}
@@ -67,14 +70,17 @@ const Login = (props) => {
                     width="100%"
                     height="45px"
                     bg="#fbfbfb"
-                    color="#ff6f61"
+                    color="#282828"
                     border="1px solid #e7e7e7"
+
                 >
                     로그인
                 </Button>
                 <Button
                     width="100%"
                     height="45px"
+                    bg="#F2AA4C"
+                    color="#282828"
                     bold="false"
                     _onClick={(e) => {
                         history.push("/Signup");

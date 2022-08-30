@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:8080",
+  "proxy": "http://13.209.216.147:8000",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -57,7 +57,6 @@
       "react-app/jest"
     ]
   },
-
   "browserslist": {
     "production": [
       ">0.2%",

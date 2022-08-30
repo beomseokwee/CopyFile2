@@ -68,9 +68,9 @@ export default function Bottom() {
         <>
             <BackColor>
                 <MainText>
-                    수많은 고객들이 고수님을 기다립니다.
+                    수많은 고객님들이 전문가님을 기다립니다.
                     <SubText>
-                        가장 많은 고객이 숨고에 있습니다. 숨고에서 빠르고 편리하게 고객을 만나세요.
+                        가장 많은 고객이 SOMEBODYHELPME에 있습니다. SOMEBODYHELPME에서 빠르고 편리하게 고객을 만나세요.
                     </SubText>
                 </MainText>
                 <ItemWrapper>
@@ -87,7 +87,7 @@ export default function Bottom() {
                             720,093
                         </Text>
                         <MiniText>
-                            등록된 고수
+                            등록된 전문가
                         </MiniText>
                     </ItemBox>
                     <ItemBox>

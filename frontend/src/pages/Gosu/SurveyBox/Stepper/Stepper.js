@@ -6,10 +6,11 @@ const Img = '/images/winter9.png';
 function Stepper({ currentQ }) {
     const translateValueMapper = {
         0: { value: 0, width: '0%' },
-        1: { value: 14, width: '20%' },
-        2: { value: 36, width: '40%' },
-        3: { value: 56, width: '60%' },
-        4: { value: 76, width: '80%' },
+        1: { value: 14, width: '18%' },
+        2: { value: 26, width: '30%' },
+        3: { value: 46, width: '50%' },
+        4: { value: 66, width: '70%' },
+        5: { value: 86, width: '90%' },
     };
     const transform = translateValueMapper[currentQ].value;
     const width = translateValueMapper[currentQ].width;

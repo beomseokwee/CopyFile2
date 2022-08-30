@@ -17,7 +17,7 @@ function Slide2({ sliders2, GoToServey }) {
                     <Box  color="info.contrastText">
                         <CardBox  onClick={() => GoToServey(sliders2[0]._idx)}>
                             <CardImg alt="인기 서비스" src= {sliders2[0].image} />
-                            <CardText>{sliders2.name}</CardText>
+                            <CardText>{sliders2[0].name}</CardText>
                         </CardBox>
                     </Box>
                 </Grid>
@@ -25,7 +25,7 @@ function Slide2({ sliders2, GoToServey }) {
                     <Box  color="info.contrastText">
                         <CardBox  onClick={() => GoToServey(sliders2[1]._idx)}>
                             <CardImg  alt="인기 서비스" src= {sliders2[1].image} />
-                            <CardText>{sliders2.name}</CardText>
+                            <CardText>{sliders2[1].name}</CardText>
                         </CardBox>
                     </Box>
                 </Grid>
@@ -78,7 +78,7 @@ function Slide2({ sliders2, GoToServey }) {
             </Grid><Grid item xs={12} sm={4}>
                 <Box  color="info.contrastText" >
                     <CardBox  onClick={() => GoToServey(sliders2[8]._idx)}>
-                        <CardImg alt="인기 서비스" src= {sliders2[8]._imagex} />
+                        <CardImg alt="인기 서비스" src= {sliders2[8].image} />
                         <CardText>{sliders2[8].name}</CardText>
                     </CardBox>
                 </Box>
