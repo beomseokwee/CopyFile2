@@ -1,56 +1,71 @@
 import React, { useState,useEffect } from 'react';
-
+import { useSelector } from "react-redux";
 
 function Event() {
+  const user_info = useSelector((state) => state.user.user);
   const [listening, setListening] = useState(false);
   const [data, setData] = useState([]);
-  var eventSource = undefined;
+  let eventSource = undefined;
+  if (user_info){
+    console.log(user_info.email)
+  }
 
   useEffect(() => {
     if (!listening) {
-      eventSource = new EventSource("/user/subscribe");
+      console.log('a')
+      // { withCredentials: true }
+      eventSource = new EventSource(`/test/subscribe`);
+      
+       //eventSource.onmessage = (event) => {
+         //console.log("result", event.data);
+         //setData(old => [...old, event.data])
+       //}
 
-      eventSource.onopen = (event) => {
-        console.log("connection opened")
-      }
+      eventSource.addEventListener("sse", (event) => {
+        const result = JSON.parse(event.data);
+        console.log("received:", result);
+        setData(result)
+      });
 
-      eventSource.onmessage = function (event) {
-        console.log("result", event.data);
-        setData(old => [...old, event.data])
-      }
-
-
-       eventSource.addEventListener('sse', e => {
-         console.log(e);
-       });
+      eventSource.addEventListener("complete", function(event) {
+	console.log('in');
+        eventSource.close();
+      });
 
       eventSource.onerror = (event) => {
         console.log(event.target.readyState)
         if (event.target.readyState === EventSource.CLOSED) {
-          console.log('eventsource closed (' + event.target.readyState + ')')
+          console.log('SSE closed (' + event.target.readyState + ')')
         }
         eventSource.close();
-      }
+      };
+
+      eventSource.onopen = (event) => {
+        console.log("connection opened")
+      };
 
       setListening(true);
+    
     }
-
     return () => {
       eventSource.close();
-      console.log("eventsource closed")
-    }
+      console.log("event closed")
+    };
 
-  }, [])
+  }, []);
 
   return (
+      <>
       <div className="App">
         <header className="App-header">
           Received Data
-          {data.map(d =>
-              <span key={d}>{d}</span>
-          )}
+          {data}
+          {/*{data.map(d =>*/}
+          {/*    <span key={d}>{d}</span>*/}
+          {/*)}*/}
         </header>
       </div>
+      </>
   );
 }
 

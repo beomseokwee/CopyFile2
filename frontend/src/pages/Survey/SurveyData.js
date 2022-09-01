@@ -25,6 +25,7 @@ export const SelectData = {
     town: {
         select: '시/군/구',
         option: [
+            '선택안함',
             '강남구',
             '강동구',
             '강북구',
@@ -50,6 +51,7 @@ export const SelectData = {
             '종로구',
             '중구',
             '중랑구',
+            
         ],
     },
 };

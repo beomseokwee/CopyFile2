@@ -17,7 +17,6 @@ const initialState = {
     access_token: false,
 };
 
-
 //Action Creator
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
@@ -48,7 +47,7 @@ const loginDB = (id, password) => {
                 //         nickname: id,
                 //     })
                 // );
-                console.log(res.data.token)
+                // console.log(res.data.token)
                 const access_token = res.headers.access_token;
                 const refresh_token = res.headers.refresh_token;
                 console.log('성공')

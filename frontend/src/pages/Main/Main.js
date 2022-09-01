@@ -70,33 +70,8 @@ const Main = () => {
             <Header1>
                 <MainTop>
                     <MainTopTitle src="../images/Mainfont1.png" />
-                {/*    <MainTopText>생활의 전문가들과 새로운 인연을 맺어보세요!</MainTopText>*/}
-                </MainTop>
-                <main  style={{zIndex:5}} className='DetailCategory'>
-                    <header
-                        className='main-header'
-                    >
-                        <div className='main-header-contents'>
-                            <div className='main-form-input'>
-                                <input
-                                    type='text'
-                                    placeholder='당신의 문제에 대한 카테고리를 못 찾으셨나요??'
-                                    autoComplete='off'
-                                    className='input-main'
-                                />
-                                <button type='button' className='btn-main'
-                                onClick={()=>{
-                                    {
-                                        goToLawSurvey()
-                                    }
-                                }}>
-                                    {/*<FontAwesomeIcon icon={faSearch} /> 상황 작성*/}
-                                    상황 작성
-                                </button>
-                            </div>
-                        </div>
-                    </header>
-            </main>
+                    <MainTopText>생활의 전문가들과 새로운 인연을 맺어보세요!</MainTopText>
+                </MainTop>              
                 {selectedCategory.length !== 0 && (
                 <Category
                     GoToCategory={GoToCategory}
@@ -123,7 +98,7 @@ const Header1 = styled.div`
   justify-content: center;
   margin : 0 auto;
   width: 1300px;
-  background-image: url('/images/law1.jpg');
+  background-image: url('/images/sea1.png');
   background-position: center;
   background-repeat: no-repeat;
   animation: gradient 9s ease-in-out infinite;
